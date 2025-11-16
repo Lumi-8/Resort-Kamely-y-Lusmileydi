@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- METADATOS BÁSICOS -->
+    <meta charset="UTF-8">  <!-- Codificación de caracteres para español -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Responsive design -->
+    <title>Paraíso Resort - Tu escape perfecto</title>
+    
+    <!-- ENLACES A ARCHIVOS EXTERNOS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Font Awesome para íconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- ===================================================================== -->
+    <!-- HEADER Y NAVEGACIÓN -->
+    <!-- ===================================================================== -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <h2>Paraíso Resort</h2>
+                </div>
+                
+                <!-- MENÚ DE NAVEGACIÓN -->
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#habitaciones">Habitaciones</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                
+                <!-- MENÚ HAMBURGUESA (para móviles) -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN HERO (BANNER PRINCIPAL) -->
+    <!-- ===================================================================== -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido al Paraíso</h1>
+            <p>Descubre el lujo y la tranquilidad en nuestro exclusivo resort</p>
+            <!-- Botón call-to-action -->
+            <a href="#reservar" class="btn btn-primary">Reservar Ahora</a>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN HABITACIONES -->
+    <!-- ===================================================================== -->
+    <section id="habitaciones" class="habitaciones">
+        <div class="container">
+            <h2 class="section-title">Nuestras Habitaciones</h2>
+            
+            <!-- GRID DE HABITACIONES - Se genera dinámicamente con Jinja2 -->
+            <div class="habitaciones-grid">
+                {% for habitacion in habitaciones %}
+                <div class="habitacion-card">
+                    <div class="habitacion-img">
+                        <!-- Imagen de la habitación -->
+                        <img src="{{ url_for('static', filename='images/' + habitacion.imagen) }}" alt="{{ habitacion.nombre }}">
+                    </div>
+                    <div class="habitacion-info">
+                        <h3>{{ habitacion.nombre }}</h3>
+                        <p>{{ habitacion.descripcion }}</p>
+                        <!-- Precio dinámico -->
+                        <div class="precio">${{ habitacion.precio }}/noche</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN SERVICIOS -->
+    <!-- ===================================================================== -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            
+            <!-- GRID DE SERVICIOS - También generado dinámicamente -->
+            <div class="servicios-grid">
+                {% for servicio in servicios %}
+                <div class="servicio-item">
+                    <i class="fas fa-concierge-bell"></i>  <!-- Ícono -->
+                    <h3>{{ servicio }}</h3>  <!-- Nombre del servicio -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN RESERVA -->
+    <!-- ===================================================================== -->
+    <section id="reservar" class="reserva">
+        <div class="container">
+            <h2 class="section-title">Haz tu Reserva</h2>
+            
+            <!-- FORMULARIO DE RESERVA - Se envía a la ruta /reservar -->
+            <form class="reserva-form" method="POST" action="{{ url_for('reservar') }}">
+                <!-- Campo nombre -->
+                <div class="form-group">
+                    <input type="text" name="nombre" placeholder="Nombre completo" required>
+                </div>
+                
+                <!-- Campo email -->
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                
+                <!-- Campo teléfono -->
+                <div class="form-group">
+                    <input type="tel" name="telefono" placeholder="Teléfono" required>
+                </div>
+                
+                <!-- Fila con dos campos: fechas -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de entrada:</label>
+                        <input type="date" name="fecha_entrada" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de salida:</label>
+                        <input type="date" name="fecha_salida" required>
+                    </div>
+                </div>
+                
+                <!-- Fila con dos campos: habitación y personas -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Habitación:</label>
+                        <!-- Select con opciones dinámicas -->
+                        <select name="habitacion" required>
+                            <option value="">Selecciona una habitación</option>
+                            {% for habitacion in habitaciones %}
+                            <option value="{{ habitacion.id }}">{{ habitacion.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Personas:</label>
+                        <input type="number" name="personas" min="1" max="4" value="2" required>
+                    </div>
+                </div>
+                
+                <!-- Botón de envío -->
+                <button type="submit" class="btn btn-primary">Reservar Ahora</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN CONTACTO -->
+    <!-- ===================================================================== -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contacto-content">
+                <!-- INFORMACIÓN DE CONTACTO -->
+                <div class="contacto-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contacto-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Playa Paraíso, Costa del Sol</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@paraisoresort.com</p>
+                    </div>
+                </div>
+                
+                <!-- FORMULARIO DE CONTACTO -->
+                <form class="contacto-form" method="POST" action="{{ url_for('contacto') }}">
+                    <div class="form-group">
+                        <input type="text" name="nombre" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensaje" placeholder="Mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- FOOTER -->
+    <!-- ===================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- SECCIÓN INFORMACIÓN -->
+                <div class="footer-section">
+                    <h3>Paraíso Resort</h3>
+                    <p>Tu escape perfecto hacia el lujo y la tranquilidad.</p>
+                </div>
+                
+                <!-- SECCIÓN ENLACES -->
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#habitaciones">Habitaciones</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                    </ul>
+                </div>
+                
+                <!-- SECCIÓN REDES SOCIALES -->
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COPYRIGHT -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Paraíso Resort. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MENSAJES FLASH (Alertas) -->
+    <!-- ===================================================================== -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- ENLACE AL ARCHIVO JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
