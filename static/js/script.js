@@ -2,22 +2,22 @@
 // MENÚ HAMBURGUESA - Para dispositivos móviles
 // =============================================================================
 
-// Seleccionar elementos del DOM
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+// Seleccionar los elementos del menú en la página
+const hamburger = document.querySelector('.hamburger');  // Ícono de 3 rayitas ☰
+const navMenu = document.querySelector('.nav-menu');     // Lista de opciones del menú
 
-// Agregar evento click al ícono hamburguesa
+// Cuando hagan clic en el ícono de hamburguesa ☰
 hamburger.addEventListener('click', () => {
-    // Alternar (toggle) la clase 'active' en ambos elementos
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
+    // Alternar (prender/apagar) la clase 'active'
+    hamburger.classList.toggle('active');  // Cambia el ícono a X
+    navMenu.classList.toggle('active');    // Muestra/oculta el menú
 });
 
-// Cerrar menú al hacer clic en un enlace de navegación
+// Cuando hagan clic en cualquier opción del menú
 document.querySelectorAll('.nav-menu a').forEach(n => n.addEventListener('click', () => {
-    // Remover clase 'active' para ocultar el menú
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    // Cerrar el menú automáticamente
+    hamburger.classList.remove('active');  // Vuelve el ícono a ☰
+    navMenu.classList.remove('active');    // Oculta el menú
 }));
 
 // =============================================================================
