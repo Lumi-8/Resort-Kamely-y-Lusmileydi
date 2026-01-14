@@ -3,354 +3,392 @@
    ============================================================================ */
 
 /* Reset para eliminar márgenes y paddings por defecto del navegador */
+* /* =========================================
+   1. RESET Y VARIABLES GLOBALES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Incluye padding y border en el width/height */
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #05182a;
+    --accent-blue: #1e79a8;
+    --text-white: #fbfdff;
+    --bg-light: #ffffff;
+    --gray-block: #b7afaf;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menú */
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6; /* Espaciado entre líneas */
-    color: #333; /* Color de texto principal */
+    font-family: "Playfair Display", serif;
+    background-color: var(--bg-light);
+    color: var(--primary-blue);
+    line-height: 1.6;
 }
 
-/* Contenedor principal para centrar contenido */
-.container {
-    max-width: 1200px; /* Ancho máximo */
-    margin: 0 auto; /* Centrar horizontalmente */
-    padding: 0 20px; /* Padding lateral */
-}
-
-/* ============================================================================
-   HEADER Y NAVEGACIÓN
-   ============================================================================ */
-
-.navbar {
-    background: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
-    position: fixed; /* Fijo en la parte superior */
+/* =========================================
+   2. NAVEGACIÓN (FIJA ARRIBA)
+   ========================================= */
+/* --- NUEVA NAVEGACIÓN DINÁMICA --- */
+/* 1. Estado base (Abajo en el Hero) */
+/* Estado 1: Abajo (Dentro del Hero) */
+/* Estado Base (Abajo) */
+.main-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    top: 0;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra suave */
+    height: 80px;
+    z-index: 100;
+    background: rgba(5, 24, 42, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 50px;
+    /* LA MAGIA ESTÁ AQUÍ */
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateY(0);
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Estado Activo (Cuando sube) */
+.nav-fixed-top {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: auto !important;
+    background: #05182a !important;
+    z-index: 9999 !important;
+    width: 100% !important; /* Para que no ocupe todo el ancho */
+    left: 0% !important;   /* Para centrarla si mide 90% */
+    margin-top: 15px;      /* Para que no choque con el borde del navegador */
+    border-radius: 50px !important;
+    
+    /* Efecto de entrada suave */
+    animation: slideDown 0.5s ease forwards;
+}
+
+/* Animación para que no aparezca de golpe */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%); /* Viene desde arriba de la pantalla */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-background {
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    width: 90%;
+    height: 70px;
+    background-color: var(--primary-blue);
+    border-radius: 40px;
+    z-index: -1;
+}
+
+.nav-links {
     display: flex;
-    justify-content: space-between; /* Logo a la izquierda, menú a la derecha */
-    align-items: center;
-    height: 70px; /* Altura fija del navbar */
-}
-
-.logo h2 {
-    color: #2c5530; /* Color verde del resort */
-    font-weight: bold;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none; /* Quita los puntos de lista */
-    gap: 30px; /* Espacio entre items del menú */
-}
-
-.nav-menu a {
-    text-decoration: none; /* Quita subrayado de enlaces */
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s; /* Transición suave para hover */
-}
-
-.nav-menu a:hover {
-    color: #2c5530; /* Color al pasar el mouse */
-}
-
-/* ============================================================================
-   SECCIÓN HERO (BANNER PRINCIPAL)
-   ============================================================================ */
-
-.hero {
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('../images/hero-bg.jpg') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease; /* Animación de entrada */
-}
-
-/* ============================================================================
-   BOTONES
-   ============================================================================ */
-
-.btn {
-    display: inline-block;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.3s ease; /* Transición para todos los efectos */
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.btn-primary {
-    background: #2c5530; /* Verde principal */
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #1e3a23; /* Verde más oscuro al hover */
-    transform: translateY(-2px); /* Efecto de levantar */
-}
-
-/* ============================================================================
-   SECCIONES GENERALES
-   ============================================================================ */
-
-section {
-    padding: 80px 0; /* Espaciado vertical */
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    color: #2c5530;
-}
-
-/* ============================================================================
-   HABITACIONES - DISEÑO GRID
-   ============================================================================ */
-
-.habitaciones-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid responsive */
-    gap: 30px; /* Espacio entre cards */
-}
-
-.habitacion-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden; /* Para que border-radius funcione con imágenes */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra para efecto de elevación */
-    transition: transform 0.3s ease; /* Transición para hover */
-}
-
-.habitacion-card:hover {
-    transform: translateY(-5px); /* Efecto de levantar al hover */
-}
-
-.habitacion-img {
-    height: 250px;
-    overflow: hidden; /* Recorta imagen si es muy grande */
-}
-
-.habitacion-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajusta imagen sin distorsionar */
-    transition: transform 0.3s ease; /* Zoom suave */
-}
-
-.habitacion-card:hover .habitacion-img img {
-    transform: scale(1.1); /* Zoom al hover */
-}
-
-/* ============================================================================
-   SERVICIOS
-   ============================================================================ */
-
-.servicios {
-    background: #f8f9fa; /* Fondo gris claro */
-}
-
-.servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
 
-.servicio-item {
-    text-align: center;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.nav-item {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: color 0.3s;
 }
 
-.servicio-item i {
-    font-size: 3rem;
-    color: #2c5530;
-    margin-bottom: 20px;
+.nav-item:hover { color: var(--accent-blue); }
+
+.btn-reservar-nav {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* ============================================================================
-   FORMULARIOS
-   ============================================================================ */
-
-.reserva-form, .contacto-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.form-group {
-    margin-bottom: 20px; /* Espacio entre campos */
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 20px; /* Espacio entre columnas */
-}
-
-input, select, textarea {
+/* =========================================
+   3. ESTRUCTURA DE SECCIONES (FLOW)
+   ========================================= */
+section {
+    position: relative;
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-/* ============================================================================
-   CONTACTO
-   ============================================================================ */
-
-.contacto-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-    gap: 50px;
-    align-items: start;
-}
-
-.contacto-item {
+    min-height: 100vh;
+    padding: 120px 5% 60px; /* Padding superior para no quedar bajo la Nav */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
 }
 
-.contacto-item i {
-    font-size: 1.5rem;
-    color: #2c5530;
-    margin-right: 15px;
-    width: 30px; /* Ancho fijo para alinear íconos */
+/* --- HERO / INICIO --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 110dvh;
+    overflow: hidden;
+    padding: 0; /* Importante: quita el padding solo aquí */
+    padding-bottom: 100px;
+    display: flex;
 }
 
-/* ============================================================================
-   FOOTER
-   ============================================================================ */
+.hero-image-selected {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
 
-.footer {
-    background: #2c5530;
+/* --- CAPAS FLOTANTES DEL HERO --- */
+.top-bar, .hero-content-left, .hero-content-right {
+    position: absolute;
+    z-index: 10;
+}
+
+.top-bar { top: 30px; left: 5%; right: 5%; display: flex; justify-content: space-between; align-items: center; }
+.theme-switch { width: 60px; height: 30px; background: var(--gray-block); border-radius: 15px; }
+.top-actions { display: flex; gap: 20px; }
+.user-session { background: var(--gray-block); padding: 10px 25px; border-radius: 40px; min-width: 150px; height: 45px; }
+
+.hero-content-left { top: 15%; left: 5%; width: 350px; }
+.hero-logo-text { background: var(--gray-block); height: 450px; border-radius: 10px; width: 100%; }
+
+.btn-reservar-hero {
+    position: absolute;
+    bottom: -20px; /* Encimado */
+    left: 230px;
+    padding: 15px 40px;
+    background: var(--accent-blue);
     color: white;
-    padding: 50px 0 20px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grid responsive */
-    gap: 40px;
-    margin-bottom: 30px;
-}
-
-.footer-section h3 {
-    margin-bottom: 20px;
-    color: #d4af37; /* Color dorado */
-}
-
-/* ============================================================================
-   MENSAJES FLASH (Alertas)
-   ============================================================================ */
-
-.flash-messages {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    z-index: 1000; /* Por encima de todo */
-}
-
-.flash-message {
-    background: #2c5530;
-    color: white;
-    padding: 15px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
     border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-/* ============================================================================
-   ANIMACIONES
-   ============================================================================ */
+.hero-content-right { bottom: 200px; right: 5%; text-align: center; }
+.hero-carousel { width: 400px; height: 210px; background: var(--gray-block); border-radius: 10px; margin-bottom: 15px; margin-top: 100px; }
+.arrow-controls { display: flex; justify-content: center; gap: 30px; }
+.arrow { cursor: pointer; width: 30px; filter: brightness(0) invert(1); }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* --- HABITACIONES --- */
+.index-habitaciones { background: #fff; }
+.esp-tithab { background: #cab8b8; padding: 20px; width: 80%; text-align: center; margin-bottom: 20px;}
+.esp-texthab { max-width: 800px; text-align: center; margin-bottom: 40px;}
+
+.habitaciones-gallery {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ============================================================================
-   DISEÑO RESPONSIVE
-   ============================================================================ */
+.esp-sel-imghab { width: 50%; height: 100%; background: #999; border-radius: 15px; }
+.esp-iz-imghab, .esp-der-imghab { width: 15%; height: 80%; background: #ccc; border-radius: 10px; opacity: 0.5; }
 
-@media (max-width: 768px) {
-    /* Menú hamburguesa visible en móviles */
-    .hamburger {
-        display: flex;
-    }
-    
-    /* Menú normal oculto en móviles */
-    .nav-menu {
-        position: fixed;
-        left: -100%; /* Oculta el menú fuera de pantalla */
-        top: 70px;
+/* --- RESTAURANTES --- */
+.index-restaurantes { background: #f9f9f9; }
+.esp-titrest { background: #aca7a7; padding: 20px; width: fit-content; margin-bottom: 30px; }
+.esp-imgrest { width: 100%; max-width: 1000px; height: 500px; background: #c6baba; margin-bottom: 30px; }
+.restaurant-actions { display: flex; gap: 20px; }
+.esp-btn-menurest, .esp-btn-morerest { 
+    background: var(--primary-blue); color: white; 
+    padding: 45px 30px; text-decoration: none; border-radius: 5px;
+}
+
+/* --- EXPERIENCIAS --- */
+/* Contenedor de la sección */
+.index-experiencias {
+    background: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    padding: 80px 0;
+}
+
+/* El div que envuelve todo el contenido */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ¡ESTO centra la imagen y el texto! */
+    width: 100%;
+    max-width: 1200px; /* Evita que se estire demasiado */
+}
+
+/* El título */
+.esp-titexp {
+    align-self: flex-start; /* Mantiene el título a la izquierda según tu Figma */
+    margin-bottom: 20px;
+    background: #b7afaf;
+    padding: 10px 40px;
+}
+
+/* La imagen gris grande */
+.esp-imgexp {
+    width: 100%;
+    height: 500px;
+    background: #c0bfbf;
+    border-radius: 20px;
+    margin-bottom: 35px;
+}
+
+/* El rectángulo de texto centrado */
+.esp-descexp {
+    background: #b1b0b0;
+    padding: 40px;
+    width: 80%; /* Ancho relativo para que se vea como en la captura */
+    max-width: 1000px;
+    border-radius: 10px;
+    text-align: left; /* El texto adentro queda a la izquierda */
+    z-index: 2;
+}
+/* --- SOBRE NOSOTROS --- */
+.info-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+.esp-logoinfo { width: 400px; height: 400px; background: #9f9696; border-radius: 50%; }
+.esp-descinfo { flex: 1; background: #c0baba; padding: 40px; border-radius: 15px; }
+
+/* --- CONTACTO --- */
+/* Contenedor principal: Separa Info (izq) de Formulario (der) */
+.contact-container {
+    display: flex;
+    justify-content: space-between; /* Separa los dos bloques principales */
+    gap: 50px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* Bloque de Información de contacto */
+.contact-info {
+    flex: 1; /* Toma la mitad del espacio */
+}
+
+.contact-info div { 
+    background: #afabab; 
+    padding: 15px; 
+    margin-bottom: 10px; 
+    border-radius: 5px; 
+}
+
+/* Bloque del Formulario */
+.contact-form { 
+    flex: 1; /* Toma la otra mitad */
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+/* Filas del formulario (Label + Input) */
+.form-group {
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente con el cuadro */
+    justify-content: space-between; /* Pone el label a la izq y el input a la der */
+    width: 100%;
+}
+
+/* Etiquetas del formulario */
+.form-group label {
+    font-weight: bold;
+    color: var(--dark-blue);
+    width: 150px; /* Ancho fijo para que todos los inputs empiecen en el mismo punto */
+}
+
+/* Cuadros de texto (QUITAMOS EL MARGIN-LEFT DE 500PX) */
+.contact-form input, 
+.contact-form textarea {
+    flex: 1; /* Hace que el cuadro rellene el resto del espacio disponible */
+    padding: 15px; 
+    background: #c9c2c2; 
+    border: none; 
+    border-radius: 8px; /* Bordes redondeados como en tu imagen */
+}
+
+.contact-form textarea {
+    height: 110px;
+    resize: none;
+}
+
+/* Botón de envío */
+.esp-butcont { 
+    background: var(--primary-blue); 
+    color: white; 
+    padding: 12px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    width: 125px; 
+    height: 35px;
+    align-self: flex-end; /* Lo pega a la derecha según tu diseño */
+    margin-top: 0px;
+}
+
+.esp-btn-reservar {
+    margin-top: 50px;
+    background: #a98e8e;
+    width: 30%;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* =========================================
+   4. FOOTER
+   ========================================= */
+.index-footer {
+    background: var(--primary-blue);
+    color: white;
+    padding: 60px 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.esp-logoft { width: 80px; height: 80px; background: #b2afaf; margin-bottom: 20px; }
+.footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; }
+.social-media { display: flex; gap: 15px; margin-top: 20px; }
+.social-media a { width: 40px; height: 40px; background: #9f9d9d; border-radius: 50%; }
+.esp-finft { grid-column: 1 / -1; text-align: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .contact-container, .info-grid, .index-footer {
         flex-direction: column;
-        background: white;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s; /* Transición suave */
-        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-        padding: 20px 0;
-    }
-    
-    /* Clase que muestra el menú cuando está activo */
-    .nav-menu.active {
-        left: 0; /* Muestra el menú */
-    }
-    
-    /* Ajustes de texto para móviles */
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    /* Formularios en una sola columna en móviles */
-    .form-row {
         grid-template-columns: 1fr;
     }
-    
-    .contacto-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
+}
+
+/* Esto SOLO se activa si JS pone la clase .modo-f11 */
+.modo-f11 .hero-section {
+    height: 95vh !important; /* Ajusta este número según prefieras */
+}
+
+.modo-f11 .main-nav {
+    bottom: 0px !important;
+    width: 100% !important;
+    border-radius: 50px !important;
+}
+
+.modo-f11 .hero-content-right {
+    bottom: 150px !important;
 }

@@ -1,260 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- METADATOS BÁSICOS -->
-    <meta charset="UTF-8">  <!-- Codificación de caracteres para español -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Responsive design -->
-    <title>Paraíso Resort - Tu escape perfecto</title>
-    
-    <!-- ENLACES A ARCHIVOS EXTERNOS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- Font Awesome para íconos -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>K’Logics Hotel</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- ===================================================================== -->
-    <!-- HEADER Y NAVEGACIÓN -->
-    <!-- ===================================================================== -->
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <!-- LOGO -->
-                <div class="logo">
-                    <h2>Paraíso Resort</h2>
-                </div>
-                
-                <!-- MENÚ DE NAVEGACIÓN -->
-                <ul class="nav-menu">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#habitaciones">Habitaciones</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#galeria">Galería</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-                
-                <!-- MENÚ HAMBURGUESA (para móviles) -->
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+    <div class="site-container">
+        
+        <header class="hero-section">
+    <div class="hero-image-selected" id="mainBg"></div>
+
+    <div class="top-bar">
+        <div class="theme-switch"></div> <div class="top-actions">
+            <div class="btn-contacto-top">Contacto</div> <div class="user-session">
+                <div class="user-photo"></div> </div>
+        </div>
+    </div>
+
+    <div class="hero-content-left">
+        <div class="hero-logo-text">
             </div>
-        </nav>
+        <button class="btn-reservar-hero">Reservar</button>
+    </div>
+
+    <div class="hero-content-right">
+        <div class="hero-carousel">
+            </div>
+        <div class="arrow-controls">
+            <span class="arrow" id="prevBtn">◀</span>
+            <span class="arrow" id="nextBtn">▶</span>
+        </div>
+    </div>
+
+    <nav class="main-nav" id="navBar">
+        <div class="nav-links">
+            <a href="#habitaciones">Habitaciones</a>
+            <a href="#restaurantes">Restaurantes</a>
+            <a href="#experiencias">Experiencias</a>
+            <a href="#sobre-nosotros">Sobre K’Logics</a>
+            <a href="#contacto">Contáctanos</a>
+        </div>
+        <button class="btn-reservar-nav">Reservar</button>
+    </nav>
+</header>
+    </div>
+    <section id="habitaciones" class="index-habitaciones">
+    <main role="main">
+        <header class="habitaciones-hero" aria-labelledby="habitaciones-title">
+            <h1 id="habitaciones-title" class="esp-tithab">Habitaciones de Lujo</h1>
+            <p class="esp-texthab">Descubra el confort y la elegancia en cada rincón de nuestras exclusivas suites.</p>
+        </header>
+
+        <section class="habitaciones-gallery" aria-label="Galería de habitaciones">
+            <div class="esp-iz-imghab" role="img" aria-label="Habitación anterior"></div>
+            <div class="esp-sel-imghab" role="img" aria-label="Habitación actual"></div>
+            <div class="esp-der-imghab" role="img" aria-label="Habitación siguiente"></div>
+
+            <button class="flecha-izhab" type="button" aria-label="Ver imagen anterior">
+                <div class="ellipse"></div>
+                <div class="icon-container">
+                    <img class="img" src="img/image.svg" alt="Atrás" />
+                </div>
+            </button>
+            <button class="flecha-derhab" type="button" aria-label="Ver siguiente imagen">
+                <div class="group">
+                    <img class="polygon" src="img/polygon-1.svg" alt="Siguiente" />
+                </div>
+            </button>
+        </section>
+
+        <section class="habitaciones-details" aria-labelledby="room-name">
+            <h2 id="room-name" class="esp-room-namehab">Suite Presidencial</h2>
+            <div class="esp-deschab">Experiencia inigualable con vista al mar y servicios exclusivos de primera clase.</div>
+            <div class="esp-room-iconshab" role="list" aria-label="Servicios incluidos">
+                </div>
+        </section>
+
+        <div class="button-ver-container">
+            <button class="button-ver" type="button">
+                <div class="rectangle-3"></div>
+                <span class="text-wrapper">Ver más</span>
+            </button>
+        </div>
+    </main>
+</section>
+<section id="restaurantes" class="index-restaurantes">
+    <main role="main">
+        <header class="restaurant-header" aria-labelledby="restaurant-title">
+            <h2 id="restaurant-title" class="esp-titrest">Nuestra Gastronomía</h2>
+        </header>
+
+        <div class="restaurant-carousel" role="region" aria-label="Galería de imágenes del restaurante">
+            <button class="flecha-izrest" type="button" aria-label="Imagen anterior">
+                <div class="div">
+                    <img class="img" src="img/image.svg" alt="" role="presentation" />
+                    <div class="rectangle-2"></div>
+                </div>
+            </button>
+
+            <figure class="esp-imgrest">
+                <img src="img/restaurante-principal.jpg" alt="Ambiente de nuestro restaurante de lujo" />
+            </figure>
+
+            <button class="flecha-derest" type="button" aria-label="Siguiente imagen">
+                <div class="group">
+                    <img class="polygon" src="img/polygon-1.svg" alt="" role="presentation" />
+                    <div class="rectangle"></div>
+                </div>
+            </button>
+        </div>
+
+        <div class="restaurant-info">
+            <p class="esp-descrest">
+                Disfrute de una experiencia culinaria única, donde los sabores locales se mezclan con técnicas internacionales en un ambiente sofisticado.
+            </p>
+            
+            <div class="restaurant-actions">
+                <a href="#menu" class="esp-btn-menurest" role="button">
+                    <span>Ver Menú</span>
+                </a>
+                <a href="#more-info" class="esp-btn-morerest" role="button">
+                    <span>Más Información</span>
+                </a>
+            </div>
+        </div>
+    </main>
+</section>
+<section id="experiencias" class="index-experiencias">
+    <div class="content-section">
+        <header class="esp-titexp">
+            <h2 class="section-title">Experiencias Inolvidables</h2>
+        </header>
+
+        <figure class="esp-imgexp">
+            <div class="image-placeholder" role="img" aria-label="Vista de actividades turísticas y relax">
+                </div>
+        </figure>
+
+        <article class="esp-descexp">
+            <div class="description-content">
+                <p>Desde tours privados por la ciudad hasta sesiones de spa personalizadas, en K'Logics transformamos su estancia en un recuerdo para toda la vida.</p>
+            </div>
+        </article>
+    </div>
+</section>
+<section id="sobre-nosotros" class="index-info">
+    <main class="info-content">
+        <header class="esp-titinfo">
+            <h2 class="info-title">Nuestra Esencia y Valores</h2>
+        </header>
+
+        <div class="info-grid">
+            <figure class="esp-logoinfo" aria-label="Logo corporativo de K'Logics">
+                </figure>
+
+            <article class="esp-descinfo">
+                <div class="text-padding">
+                    <p>En K'Logics, redefinimos el concepto de hospitalidad de lujo combinando innovación tecnológica con un servicio profundamente humano.</p>
+                    <p>Nuestra misión es crear entornos donde cada detalle está diseñado para su bienestar y confort absoluto.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+</section>
+<section id="contacto" class="index-contacto">
+    <header class="esp-titcont">
+        <h2 class="contact-title">Ponte en contacto</h2>
     </header>
 
-    <!-- ===================================================================== -->
-    <!-- SECCIÓN HERO (BANNER PRINCIPAL) -->
-    <!-- ===================================================================== -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Bienvenido al Paraíso</h1>
-            <p>Descubre el lujo y la tranquilidad en nuestro exclusivo resort</p>
-            <!-- Botón call-to-action -->
-            <a href="#reservar" class="btn btn-primary">Reservar Ahora</a>
-        </div>
-    </section>
-
-    <!-- ===================================================================== -->
-    <!-- SECCIÓN HABITACIONES -->
-    <!-- ===================================================================== -->
-    <section id="habitaciones" class="habitaciones">
-        <div class="container">
-            <h2 class="section-title">Nuestras Habitaciones</h2>
-            
-            <!-- GRID DE HABITACIONES - Se genera dinámicamente con Jinja2 -->
-            <div class="habitaciones-grid">
-                {% for habitacion in habitaciones %}
-                <div class="habitacion-card">
-                    <div class="habitacion-img">
-                        <!-- Imagen de la habitación -->
-                        <img src="{{ url_for('static', filename='images/' + habitacion.imagen) }}" alt="{{ habitacion.nombre }}">
-                    </div>
-                    <div class="habitacion-info">
-                        <h3>{{ habitacion.nombre }}</h3>
-                        <p>{{ habitacion.descripcion }}</p>
-                        <!-- Precio dinámico -->
-                        <div class="precio">${{ habitacion.precio }}/noche</div>
-                    </div>
-                </div>
-                {% endfor %}
+    <div class="contact-container">
+        <aside class="contact-info">
+            <div class="esp-dircont">
+                <p><strong>Dirección:</strong> Av. Lujo 123, Distrito Tecnológico</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ===================================================================== -->
-    <!-- SECCIÓN SERVICIOS -->
-    <!-- ===================================================================== -->
-    <section id="servicios" class="servicios">
-        <div class="container">
-            <h2 class="section-title">Nuestros Servicios</h2>
-            
-            <!-- GRID DE SERVICIOS - También generado dinámicamente -->
-            <div class="servicios-grid">
-                {% for servicio in servicios %}
-                <div class="servicio-item">
-                    <i class="fas fa-concierge-bell"></i>  <!-- Ícono -->
-                    <h3>{{ servicio }}</h3>  <!-- Nombre del servicio -->
-                </div>
-                {% endfor %}
+            <div class="esp-numcont">
+                <p><strong>Teléfono:</strong> +1 800 KLOGICS</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ===================================================================== -->
-    <!-- SECCIÓN RESERVA -->
-    <!-- ===================================================================== -->
-    <section id="reservar" class="reserva">
-        <div class="container">
-            <h2 class="section-title">Haz tu Reserva</h2>
-            
-            <!-- FORMULARIO DE RESERVA - Se envía a la ruta /reservar -->
-            <form class="reserva-form" method="POST" action="{{ url_for('reservar') }}">
-                <!-- Campo nombre -->
-                <div class="form-group">
-                    <input type="text" name="nombre" placeholder="Nombre completo" required>
-                </div>
-                
-                <!-- Campo email -->
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                
-                <!-- Campo teléfono -->
-                <div class="form-group">
-                    <input type="tel" name="telefono" placeholder="Teléfono" required>
-                </div>
-                
-                <!-- Fila con dos campos: fechas -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Fecha de entrada:</label>
-                        <input type="date" name="fecha_entrada" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha de salida:</label>
-                        <input type="date" name="fecha_salida" required>
-                    </div>
-                </div>
-                
-                <!-- Fila con dos campos: habitación y personas -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Habitación:</label>
-                        <!-- Select con opciones dinámicas -->
-                        <select name="habitacion" required>
-                            <option value="">Selecciona una habitación</option>
-                            {% for habitacion in habitaciones %}
-                            <option value="{{ habitacion.id }}">{{ habitacion.nombre }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Personas:</label>
-                        <input type="number" name="personas" min="1" max="4" value="2" required>
-                    </div>
-                </div>
-                
-                <!-- Botón de envío -->
-                <button type="submit" class="btn btn-primary">Reservar Ahora</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- ===================================================================== -->
-    <!-- SECCIÓN CONTACTO -->
-    <!-- ===================================================================== -->
-    <section id="contacto" class="contacto">
-        <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <div class="contacto-content">
-                <!-- INFORMACIÓN DE CONTACTO -->
-                <div class="contacto-info">
-                    <h3>Información de Contacto</h3>
-                    <div class="contacto-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Playa Paraíso, Costa del Sol</p>
-                    </div>
-                    <div class="contacto-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
-                    <div class="contacto-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>info@paraisoresort.com</p>
-                    </div>
-                </div>
-                
-                <!-- FORMULARIO DE CONTACTO -->
-                <form class="contacto-form" method="POST" action="{{ url_for('contacto') }}">
-                    <div class="form-group">
-                        <input type="text" name="nombre" placeholder="Nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="mensaje" placeholder="Mensaje" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-secondary">Enviar Mensaje</button>
-                </form>
+            <div class="esp-emailcont">
+                <p><strong>Email:</strong> recepcion@klogics.com</p>
             </div>
-        </div>
-    </section>
+            <div class="esp-horcont">
+                <p><strong>Horario:</strong> 24/7 Recepción</p>
+            </div>
+        </aside>
 
-    <!-- ===================================================================== -->
-    <!-- FOOTER -->
-    <!-- ===================================================================== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- SECCIÓN INFORMACIÓN -->
-                <div class="footer-section">
-                    <h3>Paraíso Resort</h3>
-                    <p>Tu escape perfecto hacia el lujo y la tranquilidad.</p>
-                </div>
-                
-                <!-- SECCIÓN ENLACES -->
-                <div class="footer-section">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#habitaciones">Habitaciones</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                    </ul>
-                </div>
-                
-                <!-- SECCIÓN REDES SOCIALES -->
-                <div class="footer-section">
-                    <h3>Síguenos</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
+        <form class="contact-form">
+            <div class="form-group">
+                <label class="esp-namecont">Nombre completo</label>
+                <input type="text" class="esp" placeholder="Escribe tu nombre..." required />
             </div>
             
-            <!-- COPYRIGHT -->
-            <div class="footer-bottom">
-                <p>&copy; 2024 Paraíso Resort. Todos los derechos reservados.</p>
+            <div class="form-group">
+                <label class="esp-emailcont-2">Correo electrónico</label>
+                <input type="email" class="esp-respcont" placeholder="email@ejemplo.com" required />
             </div>
+
+            <div class="form-group">
+                <label class="esp-mscont">Tu mensaje</label>
+                <textarea class="esp-2" placeholder="¿En qué podemos ayudarte?"></textarea>
+            </div>
+
+            <button type="submit" class="esp-butcont"> </button>
+        </form>
+    </div>
+
+    <a href="#reservar" class="esp-btn-reservar">
+        ¡RESERVA TU ESTANCIA AHORA!
+    </a>
+</section>
+<footer class="index-footer">
+    <div class="footer-branding">
+        <div class="esp-logoft" role="img" aria-label="Logo K'Logics"></div>
+        <div class="esp-nameft">
+            <h3>K'Logics</h3>
         </div>
-    </footer>
+        <div class="esp-descft">
+            <p>Excelencia en hospitalidad y confort de lujo para el viajero moderno.</p>
+        </div>
+    </div>
 
-    <!-- ===================================================================== -->
-    <!-- MENSAJES FLASH (Alertas) -->
-    <!-- ===================================================================== -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% for message in messages %}
-                    <div class="flash-message">{{ message }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
+    <nav class="footer-links" aria-label="Enlaces del pie de página">
+        <a href="#habitaciones" class="esp-linkft">Habitaciones</a>
+        <a href="#restaurantes" class="esp">Restaurantes</a>
+        <a href="#experiencias" class="esp-2">Experiencias</a>
+        <a href="#sobre-klogics" class="div">Sobre K'Logics</a>
+    </nav>
 
-    <!-- ENLACE AL ARCHIVO JAVASCRIPT -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <div class="footer-contact">
+        <div class="esp-emailft">contacto@klogics.com</div>
+        <div class="esp-numft">+1 800-KLOGICS</div>
+        
+        <div class="social-media">
+            <a href="#" class="esp-sm" aria-label="Facebook"></a>
+            <a href="#" class="esp-3" aria-label="Instagram"></a>
+            <a href="#" class="esp-4" aria-label="LinkedIn"></a>
+        </div>
+    </div>
+
+    <div class="esp-finft">
+        <p>© 2026 K'Logics Luxury Hotel. Todos los derechos reservados.</p>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>
