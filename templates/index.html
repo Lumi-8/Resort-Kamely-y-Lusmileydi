@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>K’Logics Hotel</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="..\static\css\style.css" />
 </head>
 <body>
     <div class="site-container">
@@ -47,44 +47,28 @@
 </header>
     </div>
     <section id="habitaciones" class="index-habitaciones">
-    <main role="main">
-        <header class="habitaciones-hero" aria-labelledby="habitaciones-title">
-            <h1 id="habitaciones-title" class="esp-tithab">Habitaciones de Lujo</h1>
-            <p class="esp-texthab">Descubra el confort y la elegancia en cada rincón de nuestras exclusivas suites.</p>
-        </header>
+    <header class="habitaciones-hero">
+        <h1 class="esp-tithab">Habitaciones de Lujo</h1>
+    </header>
 
-        <section class="habitaciones-gallery" aria-label="Galería de habitaciones">
-            <div class="esp-iz-imghab" role="img" aria-label="Habitación anterior"></div>
-            <div class="esp-sel-imghab" role="img" aria-label="Habitación actual"></div>
-            <div class="esp-der-imghab" role="img" aria-label="Habitación siguiente"></div>
-
-            <button class="flecha-izhab" type="button" aria-label="Ver imagen anterior">
-                <div class="ellipse"></div>
-                <div class="icon-container">
-                    <img class="img" src="img/image.svg" alt="Atrás" />
-                </div>
-            </button>
-            <button class="flecha-derhab" type="button" aria-label="Ver siguiente imagen">
-                <div class="group">
-                    <img class="polygon" src="img/polygon-1.svg" alt="Siguiente" />
-                </div>
-            </button>
-        </section>
-
-        <section class="habitaciones-details" aria-labelledby="room-name">
-            <h2 id="room-name" class="esp-room-namehab">Suite Presidencial</h2>
-            <div class="esp-deschab">Experiencia inigualable con vista al mar y servicios exclusivos de primera clase.</div>
-            <div class="esp-room-iconshab" role="list" aria-label="Servicios incluidos">
-                </div>
-        </section>
-
-        <div class="button-ver-container">
-            <button class="button-ver" type="button">
-                <div class="rectangle-3"></div>
-                <span class="text-wrapper">Ver más</span>
-            </button>
+    <div class="habitaciones-gallery">
+        <div class="esp-sel-imghab"></div>
+        
+        <div class="habitaciones-details">
+            <h2 class="esp-room-namehab">Suite Presidencial</h2>
+            <p class="esp-deschab">
+                Una experiencia inigualable con vista al mar y servicios exclusivos de primera clase.
+            </p>
         </div>
-    </main>
+
+        <button class="flecha-izhab">↑</button>
+        <button class="flecha-derhab">↓</button>
+    </div>
+
+    <div class="button-ver-container">
+        <button class="button-ver">Ver Detalles</button>
+    </div>
+</section>
 </section>
 <section id="restaurantes" class="index-restaurantes">
     <main role="main">
@@ -243,8 +227,6 @@
         <p>© 2026 K'Logics Luxury Hotel. Todos los derechos reservados.</p>
     </div>
 </footer>
-<script src="script.js"></script>
-</body>
-</html>
+<script src="..\static\js\script.js"></script>
 </body>
 </html>

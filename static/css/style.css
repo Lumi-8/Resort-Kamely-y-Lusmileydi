@@ -1,9 +1,4 @@
-/* ============================================================================
-   RESET Y ESTILOS BASE
-   ============================================================================ */
-
-/* Reset para eliminar márgenes y paddings por defecto del navegador */
-* /* =========================================
+/* =========================================
    1. RESET Y VARIABLES GLOBALES
    ========================================= */
 * {
@@ -184,33 +179,187 @@ section {
 .arrow-controls { display: flex; justify-content: center; gap: 30px; }
 .arrow { cursor: pointer; width: 30px; filter: brightness(0) invert(1); }
 
-/* --- HABITACIONES --- */
-.index-habitaciones { background: #fff; }
-.esp-tithab { background: #cab8b8; padding: 20px; width: 80%; text-align: center; margin-bottom: 20px;}
-.esp-texthab { max-width: 800px; text-align: center; margin-bottom: 40px;}
 
+/* --- HABITACIONES LOOK REVISTA --- */
+.index-habitaciones {
+    padding: 100px 0; /* Sin padding a los lados para que la imagen respire */
+    background: #fff;
+    overflow: hidden;
+}
+
+/* Título minimalista arriba a la izquierda */
+.habitaciones-hero {
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    padding: 0 5%;
+}
+
+.esp-tithab {
+    font-size: 4.5rem; /* Muy grande y elegante */
+    font-family: 'Playfair Display', serif;
+    color: #001a2c; /* El azul oscuro de tu marca */
+    margin-bottom: 10px;
+    margin-left: -565px;
+}
+
+/* Contenedor de la Galería: Aquí sucede la magia */
 .habitaciones-gallery {
-    display: flex;
+    position: relative;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 600px;
+}
+
+/* Quitamos las imágenes laterales por ahora para limpiar el diseño */
+.esp-iz-imghab, .esp-der-imghab { display: none; }
+
+.esp-sel-imghab {
     width: 100%;
-    height: 400px;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    background: #dcdcdc; /* Color de respaldo */
+    border-radius: 4px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+    object-fit: cover;
 }
 
-.esp-sel-imghab { width: 50%; height: 100%; background: #999; border-radius: 15px; }
-.esp-iz-imghab, .esp-der-imghab { width: 15%; height: 80%; background: #ccc; border-radius: 10px; opacity: 0.5; }
+/* El cuadro azul que "pisa" la imagen (Look Editorial) */
+.habitaciones-details {
+    position: absolute;
+    bottom: -50px; /* Se sale de la imagen por debajo */
+    left: 50px;   /* Se sale por la izquierda */
+    background: #001a2c;
+    color: white;
+    padding: 60px;
+    max-width: 500px;
+    z-index: 10;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
+}
 
+.esp-room-namehab {
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 15px;
+}
+
+.esp-deschab {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Botones de navegación tipo "Flotantes" */
+.flecha-izhab, .flecha-derhab {
+    position: absolute;
+    top: 50%;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    transition: 0.3s;
+}
+
+.flecha-izhab { right: 80px; top: 40%; } /* Flechas juntas a la derecha para look moderno */
+.flecha-derhab { right: 80px; top: 55%; }
+
+/* Botón Ver Más */
+.button-ver-container {
+    margin-top: 10px; /* Espacio para que el cuadro azul no lo tape */
+    text-align: center;
+    margin-left: 950px;
+}
+
+.button-ver {
+    background: transparent;
+    border: 1px solid #001a2c;
+    color: #001a2c;
+    padding: 18px 60px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
 /* --- RESTAURANTES --- */
-.index-restaurantes { background: #f9f9f9; }
-.esp-titrest { background: #aca7a7; padding: 20px; width: fit-content; margin-bottom: 30px; }
-.esp-imgrest { width: 100%; max-width: 1000px; height: 500px; background: #c6baba; margin-bottom: 30px; }
-.restaurant-actions { display: flex; gap: 20px; }
-.esp-btn-menurest, .esp-btn-morerest { 
-    background: var(--primary-blue); color: white; 
-    padding: 45px 30px; text-decoration: none; border-radius: 5px;
+/* --- RESTAURANTES --- */
+.index-restaurantes { 
+    background: #ffffff; 
+    padding: 100px 5%;
+    text-align: center;
 }
 
+/* Título con estilo limpio */
+.esp-titrest { 
+    background: transparent !important; /* Quitamos el bloque gris */
+    padding: 0 !important; 
+    font-size: 3rem;
+    font-family: "Playfair Display", serif;
+    color: var(--primary-blue);
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+/* La Imagen con marco de lujo */
+.esp-imgrest { 
+    width: 100%; 
+    max-width: 1000vh; 
+    height: 500px; 
+    background: #c6baba; 
+    border-radius: 25px; /* Bordes suaves */
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    margin: 0;
+}
+
+.esp-imgrest img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Texto descriptivo */
+.esp-descrest {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+}
+
+/* Botones estilo Cápsula */
+.restaurant-actions { 
+    display: flex; 
+    justify-content: center;
+    gap: 20px; 
+}
+
+.esp-btn-menurest, .esp-btn-morerest { 
+    background: var(--primary-blue); 
+    color: white; 
+    padding: 18px 45px; 
+    text-decoration: none; 
+    border-radius: 50px; /* Igual que la Nav Bar */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-blue);
+}
+
+.esp-btn-morerest {
+    background: transparent;
+    color: var(--primary-blue);
+}
+
+/* Efectos de interacción */
+.esp-btn-menurest:hover, .esp-btn-morerest:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
 /* --- EXPERIENCIAS --- */
 /* Contenedor de la sección */
 .index-experiencias {
