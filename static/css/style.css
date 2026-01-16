@@ -15,15 +15,14 @@
     --gray-block: #b7afaf;
 }
 
-html {
-    scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menú */
-}
-
-body {
-    font-family: "Playfair Display", serif;
-    background-color: var(--bg-light);
-    color: var(--primary-blue);
-    line-height: 1.6;
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden; /* Evita el scroll horizontal por el 100vw */
+    display: flex;
+    flex-direction: column;
 }
 
 /* =========================================
@@ -195,10 +194,10 @@ section {
 }
 
 .esp-tithab {
-    font-size: 4.5rem; /* Muy grande y elegante */
+    font-size: 3.5rem; /* Muy grande y elegante */
     font-family: 'Playfair Display', serif;
     color: #001a2c; /* El azul oscuro de tu marca */
-    margin-bottom: 10px;
+    margin-bottom: -35px;
     margin-left: -565px;
 }
 
@@ -287,124 +286,143 @@ section {
 }
 /* --- RESTAURANTES --- */
 /* --- RESTAURANTES --- */
+/* El contenedor que faltaba: Controla el ancho horizontal */
+/* --- SECCIÓN RESTAURANTES --- */
 .index-restaurantes { 
     background: #ffffff; 
-    padding: 100px 5%;
+    padding: 100px 5%; /* Espacio para que respire en desktop */
     text-align: center;
 }
 
-/* Título con estilo limpio */
 .esp-titrest { 
-    background: transparent !important; /* Quitamos el bloque gris */
-    padding: 0 !important; 
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-family: "Playfair Display", serif;
     color: var(--primary-blue);
-    margin-bottom: 40px;
-    display: inline-block;
+    margin-bottom: 50px;
 }
 
-/* La Imagen con marco de lujo */
+/* Imagen: Ahora es ancha y mantiene buena altura */
 .esp-imgrest { 
-    width: 100%; 
-    max-width: 1000vh; 
-    height: 500px; 
+    width: 90%;          /* Ocupa casi toda la pantalla */
+    max-width: 1400px;   /* Pero no se deforma en pantallas gigantes */
+    height: 650px;       /* Altura sólida para que no se vea fina */
+    margin: 0 auto 50px; /* Centrada con espacio respecto al texto */
     background: #c6baba; 
-    border-radius: 25px; /* Bordes suaves */
+    border-radius: 15px; 
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    margin: 0;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
 }
 
 .esp-imgrest img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    object-fit: cover; /* Mantiene la proporción de la foto */
 }
 
-/* Texto descriptivo */
 .esp-descrest {
-    max-width: 800px;
-    margin: 0 auto 40px;
-    font-size: 1.15rem;
+    max-width: 850px;
+    margin: 0 auto 50px;
+    font-size: 1.2rem;
     line-height: 1.8;
-    color: #4a4a4a;
+    color: #444;
 }
 
-/* Botones estilo Cápsula */
+/* --- RECUPERACIÓN DE BOTONES --- */
 .restaurant-actions { 
     display: flex; 
     justify-content: center;
-    gap: 20px; 
+    gap: 25px; 
 }
 
+/* Estilo Base para ambos botones */
 .esp-btn-menurest, .esp-btn-morerest { 
-    background: var(--primary-blue); 
-    color: white; 
-    padding: 18px 45px; 
-    text-decoration: none; 
-    border-radius: 50px; /* Igual que la Nav Bar */
-    font-weight: 600;
+    display: inline-block; /* Importante para que tomen el padding */
+    padding: 18px 50px; 
+    border-radius: 50px; 
+    font-weight: 700;
+    text-decoration: none; /* Quita el subrayado de link */
     transition: all 0.3s ease;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Botón Principal (Azul) */
+.esp-btn-menurest { 
+    background: var(--primary-blue); 
+    color: white !important; /* Forzamos que no sea azul de link */
     border: 2px solid var(--primary-blue);
 }
 
+/* Botón Secundario (Delineado) */
 .esp-btn-morerest {
     background: transparent;
-    color: var(--primary-blue);
+    color: var(--primary-blue) !important;
+    border: 2px solid var(--primary-blue);
 }
 
-/* Efectos de interacción */
-.esp-btn-menurest:hover, .esp-btn-morerest:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+/* Efecto al pasar el mouse */
+.esp-btn-menurest:hover {
+    background: #002a4a; /* Un azul un poco más oscuro */
+    transform: translateY(-3px);
+}
+
+.esp-btn-morerest:hover {
+    background: var(--primary-blue);
+    color: white !important;
+    transform: translateY(-3px);
 }
 /* --- EXPERIENCIAS --- */
 /* Contenedor de la sección */
 .index-experiencias {
     background: #fff;
     width: 100%;
+    padding: 100px 0;
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    padding: 80px 0;
+    justify-content: center;
 }
 
-/* El div que envuelve todo el contenido */
-.content-section {
+.content-section-editorial {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el texto con el centro de la imagen */
+    gap: 40px;           /* Espacio entre texto e imagen */
+    width: 90%;
+    max-width: 1400px;
+}
+
+/* Columna de texto (35% del ancho) */
+.text-column {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; /* ¡ESTO centra la imagen y el texto! */
-    width: 100%;
-    max-width: 1200px; /* Evita que se estire demasiado */
+    gap: 20px;
 }
 
-/* El título */
 .esp-titexp {
-    align-self: flex-start; /* Mantiene el título a la izquierda según tu Figma */
-    margin-bottom: 20px;
-    background: #b7afaf;
-    padding: 10px 40px;
+    background: #b7afaf; /* Tu fondo de referencia */
+    padding: 15px 30px;
+    width: fit-content;
 }
 
-/* La imagen gris grande */
-.esp-imgexp {
-    width: 100%;
-    height: 500px;
-    background: #c0bfbf;
-    border-radius: 20px;
-    margin-bottom: 35px;
-}
-
-/* El rectángulo de texto centrado */
 .esp-descexp {
-    background: #b1b0b0;
+    background: #b1b0b0; /* Tu fondo de referencia */
     padding: 40px;
-    width: 80%; /* Ancho relativo para que se vea como en la captura */
-    max-width: 1000px;
     border-radius: 10px;
-    text-align: left; /* El texto adentro queda a la izquierda */
-    z-index: 2;
+    line-height: 1.6;
+}
+
+/* Columna de imagen (65% del ancho) */
+.esp-imgexp {
+    flex: 2; 
+    height: 600px;      /* Altura fija para que sea imponente */
+    background: #c0bfbf; /* Tu fondo de referencia */
+    border-radius: 20px;
+    margin: 0;           /* Quitamos márgenes que vienen por defecto en <figure> */
+    overflow: hidden;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
 }
 /* --- SOBRE NOSOTROS --- */
 .info-grid {
@@ -417,108 +435,275 @@ section {
 
 /* --- CONTACTO --- */
 /* Contenedor principal: Separa Info (izq) de Formulario (der) */
-.contact-container {
+.index-contacto {
+    padding: 100px 5%;
+    background: #fff;
+}
+
+.contacto-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contacto-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #001a2c;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Info a la izq, form a la der */
+    gap: 80px;
+}
+
+/* Items de información: Minimalistas */
+.info-item {
+    margin-bottom: 35px;
+    border-bottom: 1px solid #eee; /* Línea fina en lugar de bloque gris */
+    padding-bottom: 15px;
+}
+
+.info-item span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Formulario: Inputs invisibles con borde inferior */
+.contacto-form {
     display: flex;
-    justify-content: space-between; /* Separa los dos bloques principales */
-    gap: 50px;
-    width: 100%;
-    margin-top: 40px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* Bloque de Información de contacto */
-.contact-info {
-    flex: 1; /* Toma la mitad del espacio */
-}
-
-.contact-info div { 
-    background: #afabab; 
-    padding: 15px; 
-    margin-bottom: 10px; 
-    border-radius: 5px; 
-}
-
-/* Bloque del Formulario */
-.contact-form { 
-    flex: 1; /* Toma la otra mitad */
-    display: flex; 
-    flex-direction: column; 
-    gap: 15px; 
-}
-
-/* Filas del formulario (Label + Input) */
 .form-group {
     display: flex;
-    align-items: center; /* Centra el texto verticalmente con el cuadro */
-    justify-content: space-between; /* Pone el label a la izq y el input a la der */
-    width: 100%;
+    flex-direction: column;
 }
 
-/* Etiquetas del formulario */
 .form-group label {
-    font-weight: bold;
-    color: var(--dark-blue);
-    width: 150px; /* Ancho fijo para que todos los inputs empiecen en el mismo punto */
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #001a2c;
 }
 
-/* Cuadros de texto (QUITAMOS EL MARGIN-LEFT DE 500PX) */
-.contact-form input, 
-.contact-form textarea {
-    flex: 1; /* Hace que el cuadro rellene el resto del espacio disponible */
-    padding: 15px; 
-    background: #c9c2c2; 
-    border: none; 
-    border-radius: 8px; /* Bordes redondeados como en tu imagen */
+.form-group input, .form-group textarea {
+    border: none;
+    border-bottom: 1px solid #ccc; /* Solo borde inferior para un look moderno */
+    padding: 12px 0;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
 }
 
-.contact-form textarea {
-    height: 110px;
+.form-group input:focus, .form-group textarea:focus {
+    border-bottom: 1px solid #001a2c; /* Se oscurece al escribir */
+}
+
+.form-group textarea {
+    height: 100px;
     resize: none;
 }
 
 /* Botón de envío */
-.esp-butcont { 
-    background: var(--primary-blue); 
-    color: white; 
-    padding: 12px; 
-    border: none; 
-    border-radius: 5px;
-    cursor: pointer; 
-    width: 125px; 
-    height: 35px;
-    align-self: flex-end; /* Lo pega a la derecha según tu diseño */
-    margin-top: 0px;
+.btn-enviar {
+    align-self: flex-end; /* Lo movemos a la derecha */
+    background: #001a2c;
+    color: white;
+    padding: 15px 60px;
+    border: none;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-enviar:hover {
+    background: #003a63;
+    transform: translateY(-2px);
+}
+
+/* --- SECCIÓN CTA RESERVA --- */
+.cta-reserva {
+    background-color: #f9f9f9; /* Un gris casi blanco para diferenciar del footer */
+    padding: 100px 5%;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-titulo {
+    font-family: "Playfair Display", serif;
+    font-size: 2.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    background: transparent !important; /* Aseguramos que no tenga bloques grises */
+}
+
+.cta-subtexto {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Rediseño del Botón para que sea moderno */
+.cta-reserva {
+    width: 100%;
+    background-color: #f9f9f9; /* Color claro para separar del footer */
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.cta-content {
+    max-width: 800px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.cta-titulo {
+    font-family: "Playfair Display", serif;
+    font-size: 2.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.cta-subtexto {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
 }
 
 .esp-btn-reservar {
-    margin-top: 50px;
-    background: #a98e8e;
-    width: 30%;
-    padding: 30px;
-    text-align: center;
+    display: inline-block;
+    background-color: var(--primary-blue);
     color: white;
-    font-size: 24px;
+    padding: 18px 50px;
     text-decoration: none;
-    font-weight: bold;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
+}
+
+.esp-btn-reservar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 /* =========================================
    4. FOOTER
    ========================================= */
 .index-footer {
-    background: var(--primary-blue);
+    width: 100vw;
+    background-color: var(--primary-blue);
     color: white;
-    padding: 60px 5%;
+    padding: 80px 5% 40px; /* Padding lateral para que el contenido no toque los bordes */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.5fr 1fr 1fr; /* Tres columnas: Branding, Links, Contacto */
     gap: 40px;
+    box-sizing: border-box; /* Esto asegura que el padding no rompa el 100% */;
 }
 
-.esp-logoft { width: 80px; height: 80px; background: #b2afaf; margin-bottom: 20px; }
-.footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 10px; }
-.social-media { display: flex; gap: 15px; margin-top: 20px; }
-.social-media a { width: 40px; height: 40px; background: #9f9d9d; border-radius: 50%; }
-.esp-finft { grid-column: 1 / -1; text-align: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; }
+/* Columna de Branding */
+.footer-branding {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
+.esp-logoft {
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff33; /* Placeholder del logo */
+    border-radius: 8px;
+}
+
+.esp-nameft h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.esp-descft p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* Columna de Navegación */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    padding-left: 5px;
+}
+
+/* Columna de Contacto y Redes */
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-media {
+    display: flex;
+    gap: 15px;
+}
+
+.social-media a {
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff22;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-media a:hover {
+    background-color: #ffffff44;
+}
+
+/* Línea de Copyright */
+.esp-finft {
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
 /* RESPONSIVE */
 @media (max-width: 900px) {
     .contact-container, .info-grid, .index-footer {

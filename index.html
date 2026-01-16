@@ -70,64 +70,38 @@
     </div>
 </section>
 </section>
-<section id="restaurantes" class="index-restaurantes">
-    <main role="main">
-        <header class="restaurant-header" aria-labelledby="restaurant-title">
-            <h2 id="restaurant-title" class="esp-titrest">Nuestra Gastronomía</h2>
-        </header>
+<section class="index-restaurantes">
+    <h2 class="esp-titrest">Nuestra Gastronomía</h2>
+    
+    <div class="esp-imgrest">
+        <img src="tu-imagen.jpg" alt="Restaurante de lujo">
+    </div>
 
-        <div class="restaurant-carousel" role="region" aria-label="Galería de imágenes del restaurante">
-            <button class="flecha-izrest" type="button" aria-label="Imagen anterior">
-                <div class="div">
-                    <img class="img" src="img/image.svg" alt="" role="presentation" />
-                    <div class="rectangle-2"></div>
-                </div>
-            </button>
-
-            <figure class="esp-imgrest">
-                <img src="img/restaurante-principal.jpg" alt="Ambiente de nuestro restaurante de lujo" />
-            </figure>
-
-            <button class="flecha-derest" type="button" aria-label="Siguiente imagen">
-                <div class="group">
-                    <img class="polygon" src="img/polygon-1.svg" alt="" role="presentation" />
-                    <div class="rectangle"></div>
-                </div>
-            </button>
-        </div>
-
-        <div class="restaurant-info">
-            <p class="esp-descrest">
-                Disfrute de una experiencia culinaria única, donde los sabores locales se mezclan con técnicas internacionales en un ambiente sofisticado.
-            </p>
-            
-            <div class="restaurant-actions">
-                <a href="#menu" class="esp-btn-menurest" role="button">
-                    <span>Ver Menú</span>
-                </a>
-                <a href="#more-info" class="esp-btn-morerest" role="button">
-                    <span>Más Información</span>
-                </a>
-            </div>
-        </div>
-    </main>
+    <p class="esp-descrest">
+        Disfrute de una experiencia culinaria única, donde los sabores locales se mezclan con técnicas internacionales en un ambiente sofisticado.
+    </p>
+    
+    <div class="restaurant-actions">
+        <a href="#" class="esp-btn-menurest">Ver Menú</a>
+        <a href="#" class="esp-btn-morerest">Más Información</a>
+    </div>
 </section>
+    </main>
 <section id="experiencias" class="index-experiencias">
-    <div class="content-section">
-        <header class="esp-titexp">
-            <h2 class="section-title">Experiencias Inolvidables</h2>
-        </header>
+    <div class="content-section-editorial">
+        <div class="text-column">
+            <header class="esp-titexp">
+                <h2 class="section-title">Experiencias Inolvidables</h2>
+            </header>
+
+            <article class="esp-descexp">
+                <p>Desde tours privados por la ciudad hasta sesiones de spa personalizadas, en K'Logics transformamos su estancia en un recuerdo para toda la vida.</p>
+            </article>
+        </div>
 
         <figure class="esp-imgexp">
-            <div class="image-placeholder" role="img" aria-label="Vista de actividades turísticas y relax">
-                </div>
+            <div class="image-placeholder" role="img" aria-label="Vista de actividades"></div>
         </figure>
-
-        <article class="esp-descexp">
-            <div class="description-content">
-                <p>Desde tours privados por la ciudad hasta sesiones de spa personalizadas, en K'Logics transformamos su estancia en un recuerdo para toda la vida.</p>
-            </div>
-        </article>
     </div>
 </section>
 <section id="sobre-nosotros" class="index-info">
@@ -148,47 +122,48 @@
             </article>
         </div>
     </main>
-</section>
 <section id="contacto" class="index-contacto">
-    <header class="esp-titcont">
-        <h2 class="contact-title">Ponte en contacto</h2>
-    </header>
-
-    <div class="contact-container">
-        <aside class="contact-info">
-            <div class="esp-dircont">
-                <p><strong>Dirección:</strong> Av. Lujo 123, Distrito Tecnológico</p>
-            </div>
-            <div class="esp-numcont">
-                <p><strong>Teléfono:</strong> +1 800 KLOGICS</p>
-            </div>
-            <div class="esp-emailcont">
-                <p><strong>Email:</strong> recepcion@klogics.com</p>
-            </div>
-            <div class="esp-horcont">
-                <p><strong>Horario:</strong> 24/7 Recepción</p>
-            </div>
-        </aside>
-
-        <form class="contact-form">
-            <div class="form-group">
-                <label class="esp-namecont">Nombre completo</label>
-                <input type="text" class="esp" placeholder="Escribe tu nombre..." required />
-            </div>
-            
-            <div class="form-group">
-                <label class="esp-emailcont-2">Correo electrónico</label>
-                <input type="email" class="esp-respcont" placeholder="email@ejemplo.com" required />
+    <div class="contacto-wrapper">
+        <h2 class="contacto-titulo">Ponte en contacto</h2>
+        
+        <div class="contacto-grid">
+            <div class="contacto-info">
+                <div class="info-item">
+                    <span>Dirección</span>
+                    <p>Av. Lujo 123, Distrito Tecnológico</p>
+                </div>
+                <div class="info-item">
+                    <span>Teléfono</span>
+                    <p>+1 800 KLOGICS</p>
+                </div>
+                <div class="info-item">
+                    <span>Email</span>
+                    <p>recepcion@klogics.com</p>
+                </div>
+                <div class="info-item">
+                    <span>Horario</span>
+                    <p>24/7 Recepción</p>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="esp-mscont">Tu mensaje</label>
-                <textarea class="esp-2" placeholder="¿En qué podemos ayudarte?"></textarea>
-            </div>
-
-            <button type="submit" class="esp-butcont"> </button>
-        </form>
+            <form class="contacto-form">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" placeholder="Escribe tu nombre...">
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" placeholder="email@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label>Tu mensaje</label>
+                    <textarea placeholder="¿En qué podemos ayudarte?"></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+            </form>
+        </div>
     </div>
+</section>
 
     <a href="#reservar" class="esp-btn-reservar">
         ¡RESERVA TU ESTANCIA AHORA!
