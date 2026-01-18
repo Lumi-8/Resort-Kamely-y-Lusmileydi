@@ -52,3 +52,72 @@ if(next && prev) { // Verifica que los botones existan antes de asignarles la fu
 // Activar el detector de F11 al cambiar tamaño de ventana
 window.addEventListener('resize', checkFullscreen);
 checkFullscreen(); // Ejecuta una vez al cargar
+
+
+// Esperar a que el DOM esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Seleccionamos los elementos principales
+    const mainImg = document.querySelector('#activeImg');
+    const mainTitle = document.querySelector('.main-title');
+    const mainDesc = document.querySelector('.hero-description');
+    const carousel = document.querySelector('.hero-carousel');
+    const cards = document.querySelectorAll('.hero-carousel .card');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    // Base de datos de contenido (Asegúrate de que las rutas coincidan con tu HTML)
+    const contentData = {
+        "static/images/pisina frente al mar.jpg": {
+            title: "K'LOGICS<br>RESORT",
+            desc: "Nagano Prefecture, set within the majestic Japan Alps, is a cultural treasure..."
+        },
+        "static/images/vevida refrescante.jpg": {
+            title: "REFRESHING<br>DRINKS",
+            desc: "Disfruta de nuestra coctelería premium con ingredientes locales frente al mar."
+        },
+        "static/images/cama en la plya.jpg": {
+            title: "COASTAL<br>COMFORT",
+            desc: "Relajación total en nuestras áreas exclusivas diseñadas para tu descanso."
+        },
+        "static/images/cabade vinos.jpg": {
+            title: "EXCLUSIVE<br>CELLAR",
+            desc: "Una selección internacional de vinos conservados en las mejores condiciones."
+        }
+    };
+
+    // Función para cambiar la imagen y el texto
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const imgElement = card.querySelector('img');
+            if (!imgElement) return;
+
+            const imgPath = imgElement.getAttribute('src');
+            const info = contentData[imgPath];
+
+            if (info) {
+                // Efecto de transición suave
+                mainImg.style.opacity = '0';
+                
+                setTimeout(() => {
+                    mainImg.src = imgPath;
+                    mainTitle.innerHTML = info.title;
+                    mainDesc.textContent = info.desc;
+                    mainImg.style.opacity = '1';
+                }, 300);
+            }
+        });
+    });
+
+    // Control de las flechas (Scroll lateral)
+    if (nextBtn && prevBtn && carousel) {
+        nextBtn.addEventListener('click', () => {
+            // Movemos el scroll el ancho de una card + el gap (aprox 145px)
+            carousel.scrollBy({ left: 145, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -145, behavior: 'smooth' });
+        });
+    }
+});
