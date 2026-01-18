@@ -135,15 +135,70 @@ section {
     padding-bottom: 100px;
     display: flex;
 }
-
+.content-start {
+    width: 40px;
+    height: 4px;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 2px;
+}
+.title-1, .title-2 {
+    font-weight: 600;
+    font-size: 60px; /* Ajustado para tu layout */
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    line-height: 1;
+    margin: 0;
+}
+.main-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 80px; /* Tamaño grande como la referencia */
+    line-height: 0.9;
+    margin: 15px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
 .hero-image-selected {
     position: absolute;
     width: 100%;
+    height: 100%; /* Ocupa todo el alto del hero-section */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Se queda al fondo */
+    overflow: hidden; /* Corta lo que sobre de la imagen */
+}
+
+.hero-image-selected img {
+    width: 100%;
     height: 100%;
-    background-color: #333;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
+    /* ESTA ES LA CLAVE: hace que la imagen se adapte como un background-image */
+    object-fit: cover; 
+    object-position: center; /* Centra la foto si es muy grande */
+    display: block;
+}
+
+/* Capa de oscuridad opcional para que el texto resalte más */
+.hero-image-selected::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Un velo oscuro sutil */
+    z-index: 2;
+}
+.hero-description {
+    font-size: 15px;
+    max-width: 400px;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+.location-tag {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
 }
 
 /* --- CAPAS FLOTANTES DEL HERO --- */
@@ -158,11 +213,17 @@ section {
 .user-session { background: var(--gray-block); padding: 10px 25px; border-radius: 40px; min-width: 150px; height: 45px; }
 
 .hero-content-left { top: 15%; left: 5%; width: 350px; }
-.hero-logo-text { background: var(--gray-block); height: 450px; border-radius: 10px; width: 100%; }
+.hero-logo-text {
+    background: none; /* Quitamos el gris */
+    height: auto; 
+    width: 100%;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Mejora legibilidad */
+}
 
 .btn-reservar-hero {
     position: absolute;
-    bottom: -20px; /* Encimado */
+    bottom: -50px; /* Encimado */
     left: 230px;
     padding: 15px 40px;
     background: var(--accent-blue);
@@ -173,11 +234,86 @@ section {
     border-radius: 5px;
 }
 
-.hero-content-right { bottom: 200px; right: 5%; text-align: center; }
-.hero-carousel { width: 400px; height: 210px; background: var(--gray-block); border-radius: 10px; margin-bottom: 15px; margin-top: 100px; }
-.arrow-controls { display: flex; justify-content: center; gap: 30px; }
-.arrow { cursor: pointer; width: 30px; filter: brightness(0) invert(1); }
+.hero-content-right { 
+    bottom: 12%; /* Bajamos un poco la posición general */
+    right: 5%; 
+    text-align: center; 
+    z-index: 10;
+}
 
+.hero-carousel {
+    display: flex;
+    gap: 15px; /* Espacio más pequeño entre fotos */
+    width: 430px; /* Reducido para que 3 fotos pequeñas quepan bien */
+    overflow: hidden; 
+    position: relative;
+    padding: 15px 0;
+    background: none; /* Aseguramos que sea transparente */
+}
+
+.hero-carousel .card {
+    flex: 0 0 130px; 
+    height: 180px;   
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    opacity: 0.8;
+    /* Añadimos un borde fino blanco muy transparente para dar relieve */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición más fluida */
+    cursor: pointer;
+    filter: brightness(0.6) saturate(0.8); /* Las apaga un poco */
+    transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);           /* Difumina el fondo de la playa */
+    -webkit-backdrop-filter: blur(8px);    /* Soporte para Safari */
+    
+    /* Un borde sutil que ayuda a que parezca cristal */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 
+                0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-carousel .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Efecto al pasar el mouse: recupera brillo y sube un poco */
+.hero-carousel .card:hover {
+    transform: translateY(-8px) scale(1.02); /* Sube un poco más y crece apenas */
+    opacity: 1;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    filter: brightness(1) saturate(1); /* Cobran vida al tocarlas */
+    transform: scale(1.05);
+}
+
+.arrow-controls {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 15px;
+}
+
+.arrow {
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    background: rgba(255, 255, 255, 0.1); /* Círculo sutil detrás */
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
 
 /* --- HABITACIONES LOOK REVISTA --- */
 .index-habitaciones {
