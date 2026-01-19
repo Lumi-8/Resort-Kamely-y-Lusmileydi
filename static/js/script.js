@@ -24,100 +24,87 @@ window.onscroll = function() {
 };
 
 // 3. CARRUSEL DE IMÁGENES
-const bg = document.getElementById("mainBg");
-const next = document.getElementById("nextBtn");
-const prev = document.getElementById("prevBtn");
-
-// Aquí pones los nombres de tus fotos reales
-const hotelImages = [
-    'url("img/foto1.jpg")',
-    'url("img/foto2.jpg")',
-    'url("img/foto3.jpg")'
-];
-
-let i = 0;
-
-if(next && prev) { // Verifica que los botones existan antes de asignarles la función
-    next.onclick = () => {
-        i = (i + 1) % hotelImages.length;
-        bg.style.backgroundImage = hotelImages[i];
-    };
-
-    prev.onclick = () => {
-        i = (i - 1 + hotelImages.length) % hotelImages.length;
-        bg.style.backgroundImage = hotelImages[i];
-    };
-}
-
-// Activar el detector de F11 al cambiar tamaño de ventana
-window.addEventListener('resize', checkFullscreen);
-checkFullscreen(); // Ejecuta una vez al cargar
-
-
-// Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Seleccionamos los elementos principales
     const mainImg = document.querySelector('#activeImg');
     const mainTitle = document.querySelector('.main-title');
     const mainDesc = document.querySelector('.hero-description');
     const carousel = document.querySelector('.hero-carousel');
-    const cards = document.querySelectorAll('.hero-carousel .card');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
+    const carouselContainer = document.querySelector('.hero-content-right');
 
-    // Base de datos de contenido (Asegúrate de que las rutas coincidan con tu HTML)
-    const contentData = {
-        "static/images/pisina frente al mar.jpg": {
-            title: "K'LOGICS<br>RESORT",
-            desc: "Nagano Prefecture, set within the majestic Japan Alps, is a cultural treasure..."
-        },
-        "static/images/vevida refrescante.jpg": {
-            title: "REFRESHING<br>DRINKS",
-            desc: "Disfruta de nuestra coctelería premium con ingredientes locales frente al mar."
-        },
-        "static/images/cama en la plya.jpg": {
-            title: "COASTAL<br>COMFORT",
-            desc: "Relajación total en nuestras áreas exclusivas diseñadas para tu descanso."
-        },
-        "static/images/cabade vinos.jpg": {
-            title: "EXCLUSIVE<br>CELLAR",
-            desc: "Una selección internacional de vinos conservados en las mejores condiciones."
+    let allData = [
+        { src: "static/images/pisina frente al mar.jpg", title: "K'LOGICS<br>RESORT", desc: "Nagano Prefecture..." },
+        { src: "static/images/vevida refrescante.jpg", title: "REFRESHING<br>DRINKS", desc: "Disfruta de nuestra coctelería..." },
+        { src: "static/images/cama en la plya.jpg", title: "COASTAL<br>COMFORT", desc: "Relajación total..." },
+        { src: "static/images/cabade vinos.jpg", title: "EXCLUSIVE<br>CELLAR", desc: "Vinos internacionales..." }
+    ];
+
+    function updateUI() {
+        const current = allData[0];
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+            mainImg.src = current.src;
+            mainTitle.innerHTML = current.title;
+            mainDesc.textContent = current.desc;
+            mainImg.style.opacity = '1';
+        }, 300);
+
+        carousel.innerHTML = '';
+        for (let i = 1; i < allData.length; i++) {
+            const item = allData[i];
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<img src="${item.src}" alt="Thumbnail">`;
+            
+            card.onclick = () => {
+                const movedItems = allData.splice(0, i + 1);
+                const selected = movedItems.pop();
+                allData.push(...movedItems);
+                allData.unshift(selected);
+                updateUI();
+                resetTimer(); // Reiniciamos el tiempo si el usuario hace clic
+            };
+            carousel.appendChild(card);
         }
+    }
+
+    nextBtn.onclick = () => {
+        const first = allData.shift();
+        allData.push(first);
+        updateUI();
+        resetTimer();
     };
 
-    // Función para cambiar la imagen y el texto
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const imgElement = card.querySelector('img');
-            if (!imgElement) return;
+    prevBtn.onclick = () => {
+        const last = allData.pop();
+        allData.unshift(last);
+        updateUI();
+        resetTimer();
+    };
 
-            const imgPath = imgElement.getAttribute('src');
-            const info = contentData[imgPath];
+    // --- Lógica de Auto-Play integrada ---
+    let autoPlayInterval;
 
-            if (info) {
-                // Efecto de transición suave
-                mainImg.style.opacity = '0';
-                
-                setTimeout(() => {
-                    mainImg.src = imgPath;
-                    mainTitle.innerHTML = info.title;
-                    mainDesc.textContent = info.desc;
-                    mainImg.style.opacity = '1';
-                }, 300);
-            }
-        });
-    });
+    const startTimer = () => {
+        autoPlayInterval = setInterval(() => {
+            nextBtn.click();
+        }, 6000);
+    };
 
-    // Control de las flechas (Scroll lateral)
-    if (nextBtn && prevBtn && carousel) {
-        nextBtn.addEventListener('click', () => {
-            // Movemos el scroll el ancho de una card + el gap (aprox 145px)
-            carousel.scrollBy({ left: 145, behavior: 'smooth' });
-        });
+    const stopTimer = () => clearInterval(autoPlayInterval);
 
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: -145, behavior: 'smooth' });
-        });
-    }
+    const resetTimer = () => {
+        stopTimer();
+        startTimer();
+    };
+
+    // Iniciar auto-play
+    startTimer();
+
+    // Pausar al pasar el mouse
+    carouselContainer.addEventListener('mouseenter', stopTimer);
+    carouselContainer.addEventListener('mouseleave', startTimer);
+
+    updateUI();
 });

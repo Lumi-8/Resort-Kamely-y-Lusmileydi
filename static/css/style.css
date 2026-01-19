@@ -34,7 +34,7 @@ html, body {
 /* Estado Base (Abajo) */
 .main-nav {
     position: absolute;
-    bottom: -70px;
+    bottom: -60px;
     left: 0;
     width: 100%;
     height: 80px;
@@ -56,7 +56,7 @@ html, body {
     z-index: 9999 !important;
     width: 100% !important; /* Para que no ocupe todo el ancho */
     left: 0% !important;   /* Para centrarla si mide 90% */
-    margin-top: 15px;      /* Para que no choque con el borde del navegador */
+    margin-top: 0px;      /* Para que no choque con el borde del navegador */
     border-radius: 50px !important;
     
     /* Efecto de entrada suave */
@@ -158,6 +158,7 @@ section {
     font-weight: 600;
     text-transform: uppercase;
 }
+
 .hero-image-selected {
     position: absolute;
     width: 100%;
@@ -237,9 +238,13 @@ section {
 
 .hero-content-right { 
     bottom: 12%; /* Bajamos un poco la posición general */
-    right: 5%; 
+    right: 0.5%; 
     text-align: center; 
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra las flechas respecto al carrusel */
+    gap: 20px;
 }
 
 .hero-carousel {
@@ -250,6 +255,9 @@ section {
     position: relative;
     padding: 15px 0;
     background: none; /* Aseguramos que sea transparente */
+    display: flex;
+    gap: 15px;
+    min-height: 180px;
 }
 
 .hero-carousel .card {
@@ -258,21 +266,42 @@ section {
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    opacity: 0.8;
-    /* Añadimos un borde fino blanco muy transparente para dar relieve */
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición más fluida */
     cursor: pointer;
-    filter: brightness(0.6) saturate(0.8); /* Las apaga un poco */
-    transition: all 0.4s ease;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);           /* Difumina el fondo de la playa */
-    -webkit-backdrop-filter: blur(8px);    /* Soporte para Safari */
-    
-    /* Un borde sutil que ayuda a que parezca cristal */
+    /* Efectos visuales de cristal */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 
                 0 10px 20px rgba(0, 0, 0, 0.3);
+    /* Estado inicial */
+    filter: brightness(0.6) saturate(0.8);
+    opacity: 0; /* Empieza en 0 para que la animación slideIn lo maneje */
+    /* SOLUCIÓN: Una sola transición para todas las propiedades.
+       Usamos 'all' o listamos las propiedades para que no se sobrescriban.
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                filter 0.4s ease, 
+                opacity 0.4s ease;
+    /* Animación de entrada cuando el JS crea la tarjeta */
+   animation: slideIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0; 
+        transform: translateX(20px); 
+    }
+    to { 
+        opacity: 0.8; 
+        transform: translateX(0); 
+    }
+}
+
+#activeImg {
+    transition: opacity 0.4s ease-in-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-carousel .card img {
