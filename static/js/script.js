@@ -33,11 +33,93 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevBtn');
     const carouselContainer = document.querySelector('.hero-content-right');
 
+    // --- LÓGICA SECCIÓN HABITACIONES ---
+const roomImg = document.querySelector('#activeRoomImg');
+const roomName = document.querySelector('.esp-room-namehab');
+const roomDesc = document.querySelector('.esp-deschab');
+const roomNext = document.getElementById('roomNextBtn');
+const roomPrev = document.getElementById('roomPrevBtn');
+
+let roomsData = [
+    { 
+        src: "static/images/habitacion con dos camas niver medio.jpg", 
+        title: "Suite Presidencial", 
+        desc: "Una experiencia inigualable con vista al mar y servicios exclusivos de primera clase." 
+    },
+    { 
+        src: "static/images/habitacion estandar.jpg", 
+        title: "Junior Suite", 
+        desc: "Elegancia y confort en un espacio diseñado para el descanso perfecto y la intimidad." 
+    },
+    { 
+        src: "static/images/habitacion nivel medio.jpg", 
+        title: "Habitación Deluxe", 
+        desc: "Vistas panorámicas y amenidades modernas para una estancia inolvidable en el corazón del resort." 
+    }
+];
+
+function updateRoomsUI() {
+    const current = roomsData[0];
+
+    // Transición suave de salida
+    roomImg.style.opacity = '0';
+    
+    setTimeout(() => {
+        roomImg.src = current.src;
+        roomName.innerHTML = current.title;
+        roomDesc.textContent = current.desc;
+        roomImg.style.opacity = '1';
+    }, 400);
+}
+
+// Botón Siguiente (Flecha Abajo)
+roomNext.onclick = () => {
+    const first = roomsData.shift();
+    roomsData.push(first);
+    updateRoomsUI();
+};
+
+// Botón Anterior (Flecha Arriba)
+roomPrev.onclick = () => {
+    const last = roomsData.pop();
+    roomsData.unshift(last);
+    updateRoomsUI();
+}// --- Lógica de Auto-Play para HABITACIONES ---
+    let roomsAutoPlay;
+
+    const startRoomsTimer = () => {
+        roomsAutoPlay = setInterval(() => {
+            roomNext.click(); // Simula el clic en la flecha de abajo
+        }, 8000); // 8 segundos (un poco más lento que el de arriba para dejar leer)
+    };
+
+    const stopRoomsTimer = () => clearInterval(roomsAutoPlay);
+
+    const resetRoomsTimer = () => {
+        stopRoomsTimer();
+        startRoomsTimer();
+    };
+
+    // Iniciar el temporizador de habitaciones
+    startRoomsTimer();
+
+    // Pausar si el usuario pone el ratón sobre la galería de habitaciones
+    const roomsContainer = document.querySelector('.habitaciones-gallery');
+    if (roomsContainer) {
+        roomsContainer.addEventListener('mouseenter', stopRoomsTimer);
+        roomsContainer.addEventListener('mouseleave', startRoomsTimer);
+    }
+
+    // --- RECUERDA añadir resetRoomsTimer() en los clics manuales ---
+    roomNext.addEventListener('click', resetRoomsTimer);
+    roomPrev.addEventListener('click', resetRoomsTimer);;
+
     let allData = [
         { src: "static/images/pisina frente al mar.jpg", title: "K'LOGICS<br>RESORT", desc: "Nagano Prefecture..." },
         { src: "static/images/vevida refrescante.jpg", title: "REFRESHING<br>DRINKS", desc: "Disfruta de nuestra coctelería..." },
         { src: "static/images/cama en la plya.jpg", title: "COASTAL<br>COMFORT", desc: "Relajación total..." },
         { src: "static/images/cabade vinos.jpg", title: "EXCLUSIVE<br>CELLAR", desc: "Vinos internacionales..." }
+    
     ];
 
     function updateUI() {
@@ -107,4 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselContainer.addEventListener('mouseleave', startTimer);
 
     updateUI();
+    // ... (después de las líneas de addEventListener del mouse)
+
+    updateUI();      // Activa el carrusel principal
+    updateRoomsUI(); // <--- AÑADE ESTA LÍNEA para activar las habitaciones
 });
+
