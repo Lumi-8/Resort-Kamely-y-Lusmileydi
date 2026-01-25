@@ -489,7 +489,7 @@ section {
     max-width: 1400px;   /* Pero no se deforma en pantallas gigantes */
     height: 650px;       /* Altura sólida para que no se vea fina */
     margin: 0 auto 50px; /* Centrada con espacio respecto al texto */
-    background: #c6baba; 
+    background: #ffffff; 
     border-radius: 15px; 
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0,0,0,0.1);
@@ -508,7 +508,132 @@ section {
     line-height: 1.8;
     color: #444;
 }
+/* Mantenemos tu clase .esp-imgrest pero la convertimos en flex */
+/* Contenedor principal de las cartas */
+/* --- ACORDEÓN GASTRONOMÍA CORREGIDO --- */
+.accordion-container {
+    display: flex;
+    gap: 15px;
+    width: 90%;
+    max-width: 1400px;
+    height: 650px;
+    margin: 0 auto 50px;
+}
 
+.card {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.7s cubic-bezier(0.25, 0.4, 0.45, 1);
+}
+/* --- EFECTO PARA HACERLO INTUITIVO (HOVER) --- */
+
+/* Cuando el usuario pasa el mouse, la tarjeta se ilumina y crece un pelín */
+.card:not(.active):hover {
+    transform: scale(1.02); /* Crece un 2% */
+    filter: brightness(1.2); /* Se aclara un poco */
+    z-index: 5; /* Se asegura de estar por encima de las otras */
+}
+
+/* El título se mueve un poquito hacia arriba para indicar interactividad */
+.card:not(.active):hover .card-title {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* En dispositivos táctiles (donde no hay mouse), 
+   nos aseguramos de que el primer toque abra la tarjeta */
+@media (hover: none) {
+    .card:not(.active):hover {
+        transform: none;
+        filter: none;
+    }
+}
+
+.card.active {
+    flex: 5;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Sombreado UNIFORME para evitar la mitad oscura */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Graduación suave de negro a transparente que cubre TODO el ancho */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 40%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Contenedor del texto */
+.card-content {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    z-index: 3;
+    color: white;
+    text-align: left;
+    /* Eliminamos cualquier fondo aquí para que no se vea cortado */
+    background: transparent !important;
+}
+
+.card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Descripción con efecto Glassmorphism */
+.card-description {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 10px;
+    transition: all 0.5s ease;
+    
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none; /* Evita sombras internas que manchen la card */
+}
+
+.card-description p {
+    padding: 15px;
+    font-size: 0.95rem;
+    margin: 0;
+    color: white;
+}
+
+.card.active .card-description {
+    opacity: 1;
+    max-height: 200px;
+}
+
+/* Ajuste para que los títulos no se vean apretados en las cards cerradas */
+.card:not(.active) .card-title {
+    font-size: 1.1rem;
+    white-space: nowrap; /* Evita que el texto se amontone */
+}
 /* --- RECUPERACIÓN DE BOTONES --- */
 .restaurant-actions { 
     display: flex; 

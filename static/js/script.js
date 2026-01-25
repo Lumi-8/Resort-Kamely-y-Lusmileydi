@@ -194,4 +194,13 @@ roomPrev.onclick = () => {
     updateUI();      // Activa el carrusel principal
     updateRoomsUI(); // <--- AÑADE ESTA LÍNEA para activar las habitaciones
 });
+// script.js (lógica de las tarjetas del carrusel de los restaurantes)
+const cards = document.querySelectorAll('.card');
 
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        // Quitamos 'active' de todas y se la damos a la clickeada
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+    });
+});
