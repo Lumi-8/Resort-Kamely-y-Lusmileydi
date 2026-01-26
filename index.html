@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>K’Logics Hotel</title>
     <link rel="stylesheet" href="static\css\style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
     <header class="hero-section">
@@ -144,15 +146,38 @@
             <header class="esp-titexp">
                 <h2 class="section-title">Experiencias Inolvidables</h2>
             </header>
-
             <article class="esp-descexp">
                 <p>Desde tours privados por la ciudad hasta sesiones de spa personalizadas, en K'Logics transformamos su estancia en un recuerdo para toda la vida.</p>
             </article>
         </div>
 
-        <figure class="esp-imgexp">
-            <div class="image-placeholder" role="img" aria-label="Vista de actividades"></div>
-        </figure>
+        <div class="swiper mySwiper esp-imgexp">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide card-experience">
+                    <img src="static/images/spa.jpg" alt="Spa">
+                    <div class="card-overlay">
+                        <span>Relajación Absoluta</span>
+                        <h3>Spa & Wellness</h3>
+                    </div>
+                </div>
+                <div class="swiper-slide card-experience">
+                    <img src="static/images/loro con flor en la boca.jpg" alt="Tours">
+                    <div class="card-overlay">
+                        <span>Aventura Privada</span>
+                        <h3>Tours Exclusivos</h3>
+                    </div>
+                </div>
+                <div class="swiper-slide card-experience">
+                    <img src="static/images/comida rest. japones1.jpg" alt="Cenas">
+                    <div class="card-overlay">
+                        <span>Gastronomía</span>
+                        <h3>Cenas Románticas</h3>
+                    </div>
+                </div>
+            </div>
+           <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     </div>
 </section>
 <section id="sobre-nosotros" class="index-info">
@@ -162,17 +187,55 @@
         </header>
 
         <div class="info-grid">
-            <figure class="esp-logoinfo" aria-label="Logo corporativo de K'Logics">
-                </figure>
+            <figure class="esp-logoinfo">
+                <img src="static/images/logo k'logics.png" alt="Logo K'Logics">
+            </figure>
 
-            <article class="esp-descinfo">
-                <div class="text-padding">
-                    <p>En K'Logics, redefinimos el concepto de hospitalidad de lujo combinando innovación tecnológica con un servicio profundamente humano.</p>
-                    <p>Nuestra misión es crear entornos donde cada detalle está diseñado para su bienestar y confort absoluto.</p>
+            <div class="column-right">
+                <article class="esp-descinfo">
+                    <p>En K'Logics, redefinimos la hospitalidad de lujo combinando innovación tecnológica con un servicio profundamente humano.</p>
+                </article>
+
+                <div class="concept-tags">
+                    <div class="tag">
+                        <strong>All-Inclusive Premium</strong>
+                        <p>Gastronomía de autor y bebidas internacionales incluidas sin límites.</p>
+                    </div>
+                    <div class="tag">
+                        <strong>Adults Only</strong>
+                        <p>Un ambiente de paz y sofisticación diseñado exclusivamente para adultos.</p>
+                    </div>
                 </div>
-            </article>
+            </div>
+        </div>
+
+        <div class="owners-section">
+            <h3 class="visionary-title">Visionarios detrás del Lujo</h3>
+            <div class="owners-grid">
+                <div class="owner-card">
+                    <div class="owner-img"></div>
+                    <h4>Nombre</h4>
+                    <span>Cofundador & CEO</span>
+                </div>
+                <div class="owner-card">
+                    <div class="owner-img"></div>
+                    <h4>Nombre</h4>
+                    <span>Directora de Experiencias</span>
+                </div>
+                <div class="owner-card">
+                    <div class="owner-img"></div>
+                    <h4>Nombre</h4>
+                    <span>Director de Innovación</span>
+                </div>
+                <div class="owner-card">
+                    <div class="owner-img"></div>
+                    <h4>Nombre</h4>
+                    <span>Gerente de Operaciones</span>
+                </div>
+            </div>
         </div>
     </main>
+</section>
 <section id="contacto" class="index-contacto">
     <div class="contacto-wrapper">
         <h2 class="contacto-titulo">Ponte en contacto</h2>
@@ -254,5 +317,6 @@
     </div>
 </footer>
 <script src="static\js\script.js"></script>
+
 </body>
 </html>

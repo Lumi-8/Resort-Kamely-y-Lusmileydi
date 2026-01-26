@@ -680,66 +680,282 @@ section {
 }
 /* --- EXPERIENCIAS --- */
 /* Contenedor de la sección */
+/* Limpieza de los bloques de texto para que sea más "Premium" */
+/* --- SECCIÓN EXPERIENCIAS (SWIPER) --- */
 .index-experiencias {
     background: #fff;
     width: 100%;
-    padding: 100px 0;
+    padding: 120px 5%; /* Más aire arriba y abajo */
     display: flex;
     justify-content: center;
 }
 
 .content-section-editorial {
     display: flex;
-    align-items: center; /* Alinea verticalmente el texto con el centro de la imagen */
-    gap: 40px;           /* Espacio entre texto e imagen */
+    align-items: center; 
+    gap: 100px; /* EL SECRETO: Espacio generoso entre texto y cartas */
     width: 90%;
     max-width: 1400px;
 }
 
-/* Columna de texto (35% del ancho) */
+/* Columna de texto (Más estrecha para legibilidad) */
 .text-column {
-    flex: 1;
+    flex: 1; 
+    max-width: 450px; /* Evita que el texto se estire demasiado */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
-.esp-titexp {
-    background: #b7afaf; /* Tu fondo de referencia */
-    padding: 15px 30px;
-    width: fit-content;
+.section-title {
+    font-size: 2.8rem; /* Un poco más grande para destacar */
+    color: #001A2C;
+    line-height: 1.2;
+    border-left: 35px solid #348ab3; 
+    padding-left: 25px;
+    margin: 0;
 }
 
 .esp-descexp {
-    background: #b1b0b0; /* Tu fondo de referencia */
-    padding: 40px;
-    border-radius: 10px;
-    line-height: 1.6;
+    background: transparent; /* Fuera bloques grises pesados */
+    padding: 0;
+    line-height: 1.8;
+    color: #444; /* Gris oscuro más elegante que el negro puro */
 }
 
-/* Columna de imagen (65% del ancho) */
+/* Columna de Swiper (Protagonista y ancha) */
 .esp-imgexp {
-    flex: 2; 
-    height: 600px;      /* Altura fija para que sea imponente */
-    background: #c0bfbf; /* Tu fondo de referencia */
-    border-radius: 20px;
-    margin: 0;           /* Quitamos márgenes que vienen por defecto en <figure> */
-    overflow: hidden;
+    flex: 1.8; /* Le da más terreno a las cartas */
+    height: 600px;
+    position: relative;
+    overflow: visible !important; /* Vital para que las cartas de atrás se vean */
 }
 
-.image-placeholder {
+.card-experience {
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* Sombra suave de resort */
+}
+
+.card-experience img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay de texto sobre la imagen */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px 40px;
+    background: linear-gradient(transparent, rgba(0, 26, 44, 0.85));
+    color: white;
+}
+
+.card-overlay span {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.card-overlay h3 {
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Navegación (Flechas) */
+.swiper-button-next, .swiper-button-prev {
+    color: #348ab3 !important;
+    background: rgba(255,255,255,0.8); /* Círculo sutil detrás de la flecha */
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1.2rem !important; /* Flechas más elegantes y pequeñas */
 }
 /* --- SOBRE NOSOTROS --- */
+/* Contenedor General */
+/* 1. El contenedor que "suelta" el diseño */
+.index-info {
+    padding: 100px 0;
+    background: #fff;
+    width: 100%;
+}
+
+.info-content {
+    width: 90%;          /* Deja un 5% de margen a cada lado */
+    max-width: 1200px;   /* Evita que se estire demasiado en pantallas grandes */
+    margin: 0 auto;      /* ESTO es lo que despega el título del borde y lo centra */
+}
+
+/* 2. El título con espacio */
+.esp-titinfo {
+    margin-bottom: 50px;
+}
+
+.info-title {
+    font-size: 3rem;
+    color: #001A2C;
+    /* Quitamos el border-left de 35px si lo tenías, mejor algo fino */
+    border-left: 8px solid #348ab3;
+    padding-left: 20px;
+}
+
+/* 3. La cuadrícula de Logo y Texto */
 .info-grid {
     display: flex;
-    gap: 40px;
-    margin-top: 40px;
+    gap: 80px;           /* Espacio entre el logo circular y el texto */
+    align-items: center; /* Centra verticalmente el logo con el párrafo */
+    margin-bottom: 80px;
 }
-.esp-logoinfo { width: 400px; height: 400px; background: #9f9696; border-radius: 50%; }
-.esp-descinfo { flex: 1; background: #c0baba; padding: 40px; border-radius: 15px; }
 
+.esp-logoinfo {
+    flex: 0 0 300px;     /* El círculo no se deforma */
+    height: 300px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.esp-logoinfo img {
+    width: 70%;          /* El logo respira dentro del círculo */
+}
+
+.column-right {
+    flex: 1;
+}
+
+/* 4. Las cajas de All-Inclusive y Adults Only */
+.concept-tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.tag {
+    background: #f8fbfc;
+    padding: 30px; /* Aumentamos un poco el padding interno */
+    border-radius: 20px;
+    border-bottom: 5px solid #348ab3;
+    transition: all 0.3s ease;
+}
+
+/* El título del concepto (ej: All-Inclusive Premium) */
+.tag strong {
+    display: block;
+    font-size: 1.4rem; /* Tamaño más grande y legible */
+    color: #001A2C;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+/* La descripción del concepto */
+.tag p {
+    font-size: 1.1rem; /* Un tamaño estándar de lectura cómodo */
+    line-height: 1.6;  /* Espacio entre líneas para que no se vea amontonado */
+    color: #444;
+    margin: 0;
+}
+
+/* Efecto opcional: resalta un poco al pasar el mouse */
+.tag:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(52, 138, 179, 0.1);
+}
+.tag:hover {
+    background: #fff;
+    border-color: #348ab3;
+    transform: translateY(-5px);
+}
+
+.esp-logoinfo img { width: 70%; object-fit: contain; }
+
+/* Columna Derecha */
+.column-right { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+
+.esp-descinfo { font-size: 1.2rem; line-height: 1.8; color: #444; }
+
+/* Conceptos (All inclusive / Adults Only) */
+.concept-tags { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.tag {
+    background: #f8fbfc;
+    padding: 25px;
+    border-radius: 15px;
+    border-bottom: 4px solid #348ab3; /* Acento azul */
+}
+
+/* Cuadrícula de 4 Dueños */
+.owners-section { 
+    margin-top: 80px;
+    text-align: center; 
+    border-top: 1px solid #eee; 
+    padding-top: 60px; /* Aquí estaba el error, ahora corregido */
+}
+
+.visionary-title { 
+    margin-bottom: 50px; 
+    color: #001A2C; 
+    font-size: 2.2rem; 
+    font-weight: 600;
+}
+
+/* Cuadrícula para los 4 dueños */
+.owners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.owner-card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease; 
+}
+
+.owner-card:hover { 
+    transform: translateY(-10px); 
+}
+
+.owner-img {
+    width: 160px;
+    height: 160px;
+    background: #e0e0e0; /* Gris placeholder */
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.owner-card h4 { 
+    color: #001A2C; 
+    margin: 10px 0 5px; 
+    font-size: 1.2rem;
+}
+
+.owner-card span { 
+    color: #348ab3; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
 /* --- CONTACTO --- */
 /* Contenedor principal: Separa Info (izq) de Formulario (der) */
 .index-contacto {
@@ -901,7 +1117,7 @@ section {
 }
 
 .esp-btn-reservar {
-    display: inline-block;
+    display: none;
     background-color: var(--primary-blue);
     color: white;
     padding: 18px 50px;

@@ -204,3 +204,13 @@ cards.forEach(card => {
         card.classList.add('active');
     });
 });
+var swiper = new Swiper(".mySwiper", {
+    effect: "cards", // Este es el efecto de cartas apiladas que querías
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
