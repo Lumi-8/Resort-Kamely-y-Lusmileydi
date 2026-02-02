@@ -18,8 +18,9 @@
         <div class="theme-switch"></div>
         <div class="top-actions">
             <div class="btn-contacto-top">Contacto</div>
-            <div class="user-session">
+            <div class="user-session"> 
                 <div class="user-photo"></div>
+               <a href="login.html" class="user-name" id="userNameLabel">Iniciar Sesión</a>
             </div>
         </div>
     </div>
@@ -317,6 +318,27 @@
     </div>
 </footer>
 <script src="static\js\script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Intentamos obtener el nombre guardado
+        const nombreGuardado = localStorage.getItem('nombreUsuario');
+        const userLabel = document.getElementById('userNameLabel');
 
+        // 2. Si existe un nombre (usuario logueado), lo mostramos
+        if (nombreGuardado && userLabel) {
+            userLabel.textContent = nombreGuardado;
+            // Opcional: Cambiamos el link para que no lo mande de nuevo al login
+            userLabel.href = "#"; 
+            
+            // Si quieres que al hacer clic pueda cerrar sesión:
+            userLabel.addEventListener('click', () => {
+                if(confirm('¿Deseas cerrar sesión?')) {
+                    localStorage.removeItem('nombreUsuario');
+                    window.location.reload();
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

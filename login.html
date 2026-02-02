@@ -11,24 +11,25 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+         <form id="registerForm">
                 <h1>Crear Cuenta</h1>
                 <span>Completa tus datos para registrarte</span>
-                <input type="text" placeholder="Nombre Completo" required />
-                <input type="email" placeholder="Correo Electrónico" required />
-                <input type="tel" placeholder="Teléfono" required />
-                <input type="password" placeholder="Contraseña" required />
-                <input type="password" placeholder="Confirmar Contraseña" required />
+               <input type="text" id="regName" placeholder="Nombre Completo" required />
+<input type="email" id="regEmail" placeholder="Correo Electrónico" required />
+<input type="tel" id="regPhone" placeholder="Teléfono" required />
+<input type="password" id="regPassword" placeholder="Contraseña" required />
+<input type="password" id="regConfirm" placeholder="Confirmar Contraseña" required />
+
                 <button class="btn-primary">Registrarse</button>
             </form>
         </div>
 
         <div class="form-container sign-in-container">
-            <form action="#">
+           <form id="loginForm">
                 <h1 class="hotel-name">K'Logics</h1>
                 <p>Bienvenido de nuevo</p>
-                <input type="email" placeholder="Correo" required />
-                <input type="password" placeholder="Contraseña" required />
+               <input type="email" id="loginEmail" placeholder="Correo" required />
+<input type="password" id="loginPassword" placeholder="Contraseña" required />
                 <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
                 <button class="btn-primary">Iniciar Sesión</button>
             </form>
@@ -63,5 +64,118 @@
             container.classList.remove("right-panel-active");
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = 'https://yiayagltfpnlsfmigjwk.supabase.co'
+const supabaseKey = 'sb_publishable_9pLji9QFPJi4hrBc6612og_lOOlTGy7'
+
+// CAMBIO AQUÍ: Usamos '_supabase' en lugar de 'supabase'
+const _supabase = supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+)
+</script>
+<script>
+  // REGISTRO
+// REGISTRO ACTUALIZADO PARA TUS TABLAS
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('regName').value;
+    const correo = document.getElementById('regEmail').value;
+    const telefono = document.getElementById('regPhone').value;
+    const password = document.getElementById('regPassword').value;
+
+    // 1️⃣ Crear usuario en la Autenticación de Supabase
+    const { data: authData, error: authError } = await _supabase.auth.signUp({
+        email: correo,
+        password: password
+    });
+
+    if (authError) {
+        alert("Error de Autenticación: " + authError.message);
+        return;
+    }
+
+    const userId = authData.user.id; // Este es el UUID que genera Supabase
+
+    // 2️⃣ Insertar en tu tabla 'usuarios'
+    const { error: userTableError } = await _supabase
+        .from('usuarios')
+        .insert([{
+            id: userId, // Usamos el mismo ID de la autenticación
+            nombre_completo: nombre,
+            correo: correo,
+            telefono: telefono,
+            contraseña: password, // Coincide con tu captura
+            rol: 'cliente'
+        }]);
+
+    if (userTableError) {
+        console.error("Error en tabla usuarios:", userTableError);
+        alert("Error al guardar perfil de usuario");
+        return;
+    }
+
+    // 3️⃣ Insertar en tu tabla 'clientes'
+    const { error: clientError } = await _supabase
+        .from('clientes')
+        .insert([{
+            nombre_completo: nombre,
+            correo: correo,
+            telefono: telefono,
+            id_usuario: userId // Vinculamos con el UUID
+        }]);
+
+    if (clientError) {
+        console.error("Error en tabla clientes:", clientError);
+        alert("Error al guardar datos de cliente");
+        return;
+    }
+
+    alert('¡Registro exitoso en K\'Logics! Ya puedes iniciar sesión.');
+});
+// PROBAR LOGIN Y CONSULTA DE DATOS
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    console.log("Intentando login para:", email);
+
+    // 1. Intentar entrar al sistema (Auth)
+    const { data: authData, error: authError } = await _supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    if (authError) {
+        console.error("Error en Auth:", authError.message);
+        alert("Acceso denegado: " + authError.message); // Nos dirá si el correo no está verificado
+        return;
+    }
+
+    // 2. BUSCAR EN TU TABLA USANDO EL CORREO
+    const { data: perfil, error: perfilError } = await _supabase
+        .from('usuarios')
+        .select('nombre_completo, rol')
+        .eq('correo', email) 
+        .single();
+
+    if (perfilError) {
+        console.error("Error en Tabla Usuarios:", perfilError);
+        alert("Logueado, pero no encontré tu perfil en la tabla.");
+    } else {
+        // 1. Guardamos el nombre en la memoria del navegador
+        localStorage.setItem('nombreUsuario', perfil.nombre_completo);
+        
+        alert(`¡Bienvenido de nuevo, ${perfil.nombre_completo}!`);
+        
+        // 2. Redirigimos al index
+        window.location.href = 'index.html';
+    }
+});
+</script>
+
 </body>
 </html>
