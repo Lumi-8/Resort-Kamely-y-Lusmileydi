@@ -11,67 +11,80 @@ function checkFullscreen() {
 // TODO EL CONTROL DE LA INTERFAZ DENTRO DEL DOMCONTENTLOADED
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- SECCIÓN 2: CONTROL DE LA NAV BAR (INTELIGENTE) ---
+   // --- SECCIÓN 2: CONTROL DE LA NAV BAR (INTELIGENTE & SCROLLSPY) ---
     let ultimaPosicionScroll = window.pageYOffset;
+    let bloqueoScroll = false; 
     const nav = document.getElementById("navBar");
+    const enlaces = document.querySelectorAll('.nav-links a');
 
+    // A. LÓGICA PARA CLICS (Evita que la nav desaparezca al saltar a una sección)
+    enlaces.forEach(enlace => {
+        enlace.addEventListener('click', () => {
+            bloqueoScroll = true; 
+            nav.classList.remove("nav-hidden"); 
+            nav.style.setProperty("transform", "translate(-50%, 0)", "important");
+            nav.style.setProperty("opacity", "1", "important");
+
+            // Tiempo suficiente para que termine la animación de desplazamiento
+            setTimeout(() => { bloqueoScroll = false; }, 1000); 
+        });
+    });
+
+    // B. ÚNICA FUNCIÓN DE SCROLL
     window.addEventListener('scroll', () => {
+        if (bloqueoScroll) return; // Si clicamos un link, pausamos esta lógica
+
         let scrollActual = window.pageYOffset || document.documentElement.scrollTop;
         let vh = window.innerHeight;
 
-        // A. ACTIVACIÓN DEL MODO FIJO (Espera a que salga casi todo el Hero)
+        // Activación del modo fijo al salir del Hero
         if (scrollActual > (vh * 0.95)) { 
             nav.classList.add("nav-fixed-top");
 
-            // B. LÓGICA DE OCULTAR/MOSTRAR (Solo en contenido inferior)
+            // Mostrar/Ocultar suavemente según dirección
             if (scrollActual > vh + 100) { 
                 if (scrollActual > ultimaPosicionScroll + 5) {
-                    // BAJANDO: Ocultar suavemente
+                    // Bajando: Esconder
                     nav.style.setProperty("transform", "translate(-50%, -160%)", "important");
                     nav.style.setProperty("opacity", "0", "important");
                 } else if (scrollActual < ultimaPosicionScroll - 10) {
-                    // SUBIENDO: Mostrar suavemente
+                    // Subiendo: Mostrar
                     nav.style.setProperty("transform", "translate(-50%, 0)", "important");
                     nav.style.setProperty("opacity", "1", "important");
                 }
             }
         } else {
-            // VOLVIENDO AL HERO: Reset total
+            // Reset total al volver al inicio (Hero)
             nav.classList.remove("nav-fixed-top");
             nav.style.removeProperty("transform");
             nav.style.removeProperty("opacity");
         }
         ultimaPosicionScroll = scrollActual;
     });
-    // --- LÓGICA DE RESALTE (ScrollSpy) ---
-const secciones = document.querySelectorAll('section[id], header[id]'); // Detecta secciones con ID
-const enlacesNav = document.querySelectorAll('.nav-links a');
 
-const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -70% 0px', // Detecta la sección cuando está en la parte superior/media
-    threshold: 0
-};
+    // C. LÓGICA DE RESALTE (ScrollSpy)
+    const secciones = document.querySelectorAll('section[id], header[id]');
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            
-            // Quitamos la clase active a todos
-            enlacesNav.forEach(link => {
-                link.classList.remove('active-link');
-                // Si el href del link coincide con el ID de la sección...
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add('active-link');
-                }
-            });
-        }
-    });
-}, observerOptions);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                enlaces.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
 
-// Ponemos a observar todas las secciones
-secciones.forEach(seccion => observer.observe(seccion));
+    secciones.forEach(seccion => observer.observe(seccion));
 
     // --- SECCIÓN 3: CARRUSEL HERO PRINCIPAL ---
     const mainImg = document.querySelector('#activeImg');
