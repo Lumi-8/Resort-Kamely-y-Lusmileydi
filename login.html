@@ -127,13 +127,21 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
             id_usuario: userId // Vinculamos con el UUID
         }]);
 
-    if (clientError) {
+   if (clientError) {
         console.error("Error en tabla clientes:", clientError);
         alert("Error al guardar datos de cliente");
         return;
     }
 
-    alert('¡Registro exitoso en K\'Logics! Ya puedes iniciar sesión.');
+    // ✨ LOGUEO AUTOMÁTICO TRAS REGISTRO ✨
+    // 1. Guardamos la información en el navegador para que el index la reconozca
+    localStorage.setItem('nombreUsuario', nombre);
+    localStorage.setItem('userId', userId);
+
+    alert('¡Bienvenido a K\'Logics! Tu cuenta ha sido creada con éxito.');
+
+    // 2. Redirección inmediata al index
+    window.location.href = 'index.html';
 });
 // PROBAR LOGIN Y CONSULTA DE DATOS
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
