@@ -22,7 +22,15 @@ window.onscroll = function() {
         nav.classList.remove("nav-fixed-top");
     }
 };
-
+window.addEventListener('scroll', function() {
+    const nav = document.getElementById("navBar");
+    // Si bajamos más de 100px activamos el modo flotante
+    if (window.scrollY > 100) {
+        nav.classList.add("nav-fixed-top");
+    } else {
+        nav.classList.remove("nav-fixed-top");
+    }
+});
 // 3. CARRUSEL DE IMÁGENES
 document.addEventListener('DOMContentLoaded', () => {
     const mainImg = document.querySelector('#activeImg');

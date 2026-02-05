@@ -32,84 +32,93 @@ html, body {
 /* 1. Estado base (Abajo en el Hero) */
 /* Estado 1: Abajo (Dentro del Hero) */
 /* Estado Base (Abajo) */
+:root {
+    --bg-dark: rgba(5, 24, 42, 0.8);
+    --accent: #1a73e8; /* Tu azul de reserva */
+}
+
+/* Estado Inicial (Reposo) */
 .main-nav {
     position: absolute;
-    bottom: -60px;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    z-index: 100;
+    bottom: -60px; /* Se queda a 20px del final del Hero */
+    left: 50%;
+    transform: translateX(-50%); /* Centrado horizontal */
+    width: 90%;
+    max-width: 1200px;
+    height: 70px;
     background: rgba(5, 24, 42, 0.7);
     backdrop-filter: blur(15px);
-    border-radius: 50px;
-    /* LA MAGIA ESTÁ AQUÍ */
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform: translateY(0);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 100px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición suave */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Estado Activo (Cuando sube) */
+.nav-inner {
+    display: flex;
+    justify-content: space-between; /* Empuja los links a la izquierda y el botón a la derecha */
+    align-items: center;
+    width: 100%;
+    padding: 0 40px; /* Más aire en los laterales */
+}
+
+/* Enlaces (Corrigiendo el color morado) */
+.nav-links {
+    display: flex;
+    gap: 20px; /* Reducimos un poco el espacio entre links si la pantalla es pequeña */
+    flex-wrap: nowrap; /* Evita que los links se bajen de línea */
+}
+.nav-links a {
+    color: #ffffff !important; /* Forzamos blanco */
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+.nav-links a:hover { opacity: 1; color: var(--accent) !important; }
+
+/* Botón Reservar */
+.btn-reservar-nav {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.btn-reservar-nav:hover {
+    transform: scale(1.05); /* Crece un poquito */
+    background-color: #1557b0; /* Un azul un poco más oscuro */
+}
+
+/* --- LA MAGIA DEL VIDEO (Estado Fixed) --- */
 .nav-fixed-top {
     position: fixed !important;
-    top: 0 !important;
-    bottom: auto !important;
-    background: #05182a !important;
-    z-index: 9999 !important;
-    width: 100% !important; /* Para que no ocupe todo el ancho */
-    left: 0% !important;   /* Para centrarla si mide 90% */
-    margin-top: 0px;      /* Para que no choque con el borde del navegador */
-    border-radius: 50px !important;
+    top: 10px !important; /* Ahora se separa del borde superior */
+    bottom: auto !important; /* Anulamos el bottom: 20px anterior */
+    width: 85% !important;
+    background: rgba(5, 24, 42, 0.9) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     
-    /* Efecto de entrada suave */
-    animation: slideDown 0.5s ease forwards;
+    /* Animación de entrada para que no salte de golpe */
+    animation: slideFromTop 0.5s ease forwards;
 }
-
-/* Animación para que no aparezca de golpe */
-@keyframes slideDown {
+@keyframes slideFromTop {
     from {
-        transform: translateY(-100%); /* Viene desde arriba de la pantalla */
+        transform: translate(-50%, -100%); /* Viene un poco de más arriba */
         opacity: 0;
     }
     to {
-        transform: translateY(0);
+        transform: translate(-50%, 0);
         opacity: 1;
     }
-}
-
-.nav-background {
-    position: absolute;
-    top: 10px;
-    left: 5%;
-    width: 90%;
-    height: 70px;
-    background-color: var(--primary-blue);
-    border-radius: 40px;
-    z-index: -1;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-item {
-    color: var(--text-white);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 18px;
-    transition: color 0.3s;
-}
-
-.nav-item:hover { color: var(--accent-blue); }
-
-.btn-reservar-nav {
-    background: var(--accent-blue);
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 /* =========================================
