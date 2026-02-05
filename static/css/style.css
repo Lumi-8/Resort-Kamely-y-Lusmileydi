@@ -80,6 +80,34 @@ html, body {
     opacity: 0.8;
 }
 .nav-links a:hover { opacity: 1; color: var(--accent) !important; }
+/* Estilo para el resalte tipo óvalo */
+.nav-links a.active-link {
+    color: #ffffff !important; /* Texto blanco puro */
+    opacity: 1 !important;
+    position: relative;
+}
+
+/* El óvalo detrás del texto */
+.nav-links a.active-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%; /* Un poco más ancho que el texto */
+    height: 140%; /* Un poco más alto que el texto */
+    background: rgba(255, 255, 255, 0.1); /* Blanco muy sutil */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde delicado */
+    border-radius: 40px; /* Forma de óvalo */
+    z-index: -1; /* Lo manda detrás del texto */
+    backdrop-filter: blur(5px); /* Un pequeño extra de glassmorphism */
+    animation: fadeInOval 0.4s ease forwards;
+}
+
+@keyframes fadeInOval {
+    from { opacity: 0; scale: 0.8; }
+    to { opacity: 1; scale: 1; }
+}
 
 /* Botón Reservar */
 .btn-reservar-nav {
@@ -101,14 +129,13 @@ html, body {
 /* --- LA MAGIA DEL VIDEO (Estado Fixed) --- */
 .nav-fixed-top {
     position: fixed !important;
-    top: 10px !important; /* Ahora se separa del borde superior */
-    bottom: auto !important; /* Anulamos el bottom: 20px anterior */
-    width: 85% !important;
-    background: rgba(5, 24, 42, 0.9) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    
-    /* Animación de entrada para que no salte de golpe */
-    animation: slideFromTop 0.5s ease forwards;
+    top: 20px !important; /* Mantenemos el aire arriba como el video */
+    left: 50% !important;
+    bottom: auto !important;
+    /* IMPORTANTE: Quitamos animaciones y transforms fijos */
+    animation: none !important; 
+    transform: translate(-50%, 0) !important; /* Posición base centrada */
+    transition: transform 0.4s ease, opacity 0.3s ease !important;
 }
 @keyframes slideFromTop {
     from {
