@@ -1239,20 +1239,44 @@ section {
 .social-media {
     display: flex;
     gap: 15px;
+    align-items: center;
 }
 
 .social-media a {
-    width: 35px;
-    height: 35px;
-    background-color: #ffffff22;
+    width: 40px;  /* Un poquito más grande para que luzca */
+    height: 40px;
     border-radius: 50%;
-    transition: 0.3s;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    /* EL TRUCO MÁGICO: Centrado total */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Fondo por defecto si no tienen clase específica */
+    background-color: #ffffff22; 
+    color: white; 
+}
+
+/* Estilo específico para Instagram */
+.esp-3 { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    color: white !important;
 }
 
 .social-media a:hover {
-    background-color: #ffffff44;
+    transform: translateY(-3px); /* Pequeño salto hacia arriba */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff44; /* Solo aplica si no tiene el gradiente */
 }
 
+/* Ajuste del tamaño del ícono SVG */
+.social-media a svg {
+    width: 20px; 
+    height: 20px;
+    fill: currentColor; /* Para que herede el color 'white' del padre */
+}
 /* Línea de Copyright */
 .esp-finft {
     grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
