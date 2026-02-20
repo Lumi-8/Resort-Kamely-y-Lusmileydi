@@ -1177,10 +1177,11 @@ section {
     background-color: var(--primary-blue);
     color: white;
     padding: 80px 5% 40px; /* Padding lateral para que el contenido no toque los bordes */
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr; /* Tres columnas: Branding, Links, Contacto */
-    gap: 40px;
     box-sizing: border-box; /* Esto asegura que el padding no rompa el 100% */;
+   display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr; /* Tres columnas arriba */
+    gap: 40px;
+    align-items: flex-start;
 }
 
 /* Columna de Branding */
@@ -1278,14 +1279,22 @@ section {
     fill: currentColor; /* Para que herede el color 'white' del padre */
 }
 /* Línea de Copyright */
+/* Línea de Copyright - CORREGIDO */
 .esp-finft {
-    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    grid-column: 1 / -1; /* OCUPA TODAS LAS COLUMNAS */
+    text-align: center;
     margin-top: 40px;
     padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.esp-finft p {
+    margin: 0;
+    width: 100%;
     text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.6;
+    font-size: 14px;
+    opacity: 0.8;
 }
 /* RESPONSIVE */
 @media (max-width: 900px) {
