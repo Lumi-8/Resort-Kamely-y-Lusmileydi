@@ -14,6 +14,7 @@ body {
     overflow: hidden;
 }
 
+/* Fondo Inmersivo */
 .main-bg {
     position: fixed;
     top: 0; left: 0;
@@ -21,7 +22,7 @@ body {
     background-size: cover;
     background-position: center;
     z-index: -1;
-    filter: brightness(0.6);
+    filter: brightness(0.8);
     transition: background-image 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -35,21 +36,120 @@ body {
     flex-direction: column;
 }
 
-/* Navbar */
+/* Navbar Ultra Minimalista */
 .main-navbar {
-    background: rgba(17, 24, 36, 0.85);
-    backdrop-filter: blur(20px);
-    border-radius: 100px;
-    padding: 0.5rem 1rem 0.5rem 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
 }
-.nav-container { display: flex; justify-content: space-between; align-items: center; }
-.nav-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; margin-right: 1.8rem; }
-.nav-links a.active { color: var(--white); font-weight: 600; }
-.nav-btn-reserve { background: var(--blue-accent); color: var(--white); border: none; padding: 0.7rem 2rem; border-radius: 50px; cursor: pointer; }
 
-/* Showcase Dinámico */
-/* Contenedor principal */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: rgba(17, 24, 36, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    box-sizing: content-box;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(17, 24, 36, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links.mobile-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover { color: var(--blue-accent); }
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* Panel de Detalles Cinematográfico */
+.room-details-panel {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 50%;
+    max-width: 650px;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 5;
+    background: linear-gradient(to right, rgba(5, 12, 22, 0.95) 0%, rgba(5, 12, 22, 0.7) 60%, rgba(5, 12, 22, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem 0 5%;
+}
+
+.interactive-showcase.room-active .room-details-panel {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sub-tag { color: var(--blue-accent); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
+.room-details-panel h2 { font-size: 3.5rem; font-family: serif; margin: 0.5rem 0; }
+.room-details-panel p { color: rgba(255, 255, 255, 0.8); line-height: 1.6; }
+.room-price-tag { font-size: 1.4rem; font-weight: 600; color: var(--blue-accent); margin: 1rem 0; display: block;}
+
+.btn-reserve-room {
+    background: var(--blue-accent);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 15px rgba(30, 123, 246, 0.3);
+}
+
+/* Amenities */
+.amenities-container { display: flex; gap: 0.8rem; margin-top: 1rem; }
+.amenity-badge {
+    background: var(--glass);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Carrusel Drawer */
 .interactive-showcase {
     flex-grow: 1;
     display: flex;
@@ -58,58 +158,31 @@ body {
     padding-bottom: 4rem;
     position: relative;
     width: 100%;
-    overflow: hidden; /* Evita que salga barra de scroll horizontal */
 }
 
-/* Panel Izquierdo */
-.room-details-panel {
-    max-width: 500px;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    z-index: 5;
-}
-.room-details-panel h2 { font-size: 3.2rem; font-family: serif; margin: 0.5rem 0; }
-.room-price-tag { font-size: 1.2rem; font-weight: 600; color: var(--blue-accent); display: block; margin-top: 0.5rem; }
-
-/* Contenedor de Extras */
-.amenities-container { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
-.amenity-badge {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* =======================================================
-   EL CAJÓN DEL CARRUSEL (Efecto Patagonia Express)
-======================================================= */
 .carousel-drawer {
     position: absolute;
     right: 50%;
-    transform: translateX(50%); /* Centrado perfecto */
+    transform: translateX(50%);
     bottom: 15%;
     z-index: 10;
     transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
-/* ESTADO OCULTO: Se activa en JS al clickear una tarjeta */
-.carousel-drawer.hidden-state {
-    transform: translateX(calc(100% - 40px)); /* Deja solo un "cachito" de 40px visible */
+
+.interactive-showcase.room-active .carousel-drawer {
+    right: 0;
+    transform: translateX(calc(100% - 80px)); 
+    bottom: 5%;
 }
 
-/* HOVER: Cuando el usuario acerca el cursor al borde derecho, vuelve a salir */
-.carousel-drawer.hidden-state:hover {
-    transform: translateX(0);
-    background: linear-gradient(to left, rgba(5, 12, 22, 0.95), rgba(5, 12, 22, 0.4));
+.carousel-drawer.user-exploring {
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    bottom: 15% !important;
 }
 
-/* El Carrusel interno */
-.preview-carousel {
-    display: flex;
-    gap: 1.5rem;
-}
+.preview-carousel { display: flex; gap: 1.5rem; }
 
-/* Tarjetas GRANDES e imponentes como al principio */
 .room-card {
     width: 300px;
     height: 450px;
@@ -117,153 +190,17 @@ body {
     overflow: hidden;
     cursor: pointer;
     border: 2px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.5s ease;
     flex-shrink: 0;
     position: relative;
 }
 
-.room-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
+.room-card.active-in-bg { display: none; }
 
-.room-card:hover img {
-    transform: scale(1.05);
-}
-
-.room-card.active {
-    border-color: var(--blue-accent);
-    box-shadow: 0 0 40px rgba(30, 123, 246, 0.4);
-}
-
+.room-card img { width: 100%; height: 100%; object-fit: cover; }
 .card-info {
     position: absolute;
     bottom: 0; left: 0; width: 100%;
-    padding: 2.5rem 1.5rem 1.5rem;
+    padding: 2rem 1.5rem 1.5rem;
     background: linear-gradient(transparent, rgba(5, 12, 22, 0.95));
-    color: white;
 }
-.card-info h3 { font-size: 1.2rem; margin-bottom: 0.2rem; font-weight: 500; }
-.card-info span { font-size: 0.8rem; color: var(--blue-accent); text-transform: uppercase; letter-spacing: 1px; }
-
-/* Animaciones al interactuar con las tarjetas */
-.room-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.room-card:hover img {
-    transform: scale(1.05);
-}
-
-/* Estilo para la tarjeta activa */
-.room-card.active {
-    border-color: var(--blue-accent);
-    box-shadow: 0 10px 30px rgba(30, 123, 246, 0.3);
-}
-
-/* Cuando se activa una habitación, mostramos el texto */
-/* 1. ESTADO ACTIVO: Cuando seleccionas una habitación */
-/* El carrusel se retira inmediatamente a la derecha dejando el "cachito" */
-.interactive-showcase.room-active .carousel-drawer {
-    right: 0;
-    transform: translateX(calc(100% - 80px)); 
-    bottom: 5%;
-    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* El panel de detalles entra desde la izquierda */
-.interactive-showcase.room-active .room-details-panel {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* 2. ESTADO DE EXPLORACIÓN: Cuando el usuario acerca el mouse al "cachito" */
-/* Usamos la clase que gestiona el JS para evitar que el clic bloquee el movimiento */
-.interactive-showcase.room-active .carousel-drawer.user-exploring {
-    right: 50%;
-    transform: translateX(50%);
-    bottom: 15%;
-}
-
-/* Los detalles se barren a la izquierda en simultáneo para limpiar la vista */
-.interactive-showcase.room-active .carousel-drawer.user-exploring ~ .room-details-panel {
-    opacity: 0;
-    transform: translateX(-120%);
-}
-
-/* 3. ESTILOS DEL PANEL (Limpios) */
-.room-details-panel {
-    position: absolute;
-    left: 5%;
-    bottom: 15%;
-    max-width: 500px;
-    opacity: 0;
-    transform: translateX(-120%);
-    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 5;
-}
-
-.sub-tag { 
-    color: var(--blue-accent); 
-    text-transform: uppercase; 
-    font-size: 0.85rem; 
-    letter-spacing: 2px; 
-    display: block; 
-}
-
-.room-details-panel h2 { 
-    font-size: 3.5rem; 
-    font-family: serif; 
-    margin: 0.5rem 0; 
-}
-
-/* Contenedor de Extras de tu compañera */
-.amenities-container { display: flex; gap: 0.8rem; margin-top: 1rem; }
-.amenity-badge {
-    background: var(--glass);
-    backdrop-filter: blur(5px);
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: popIn 0.4s ease both;
-}
-
-/* El Carrusel de "Pestañas" (Derecha) */
-.preview-carousel {
-    display: flex;
-    gap: 1rem;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.preview-card {
-    width: 120px;
-    height: 180px;
-    border-radius: 18px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    filter: grayscale(0.5);
-}
-
-.preview-card:hover {
-    transform: translateY(-10px);
-    filter: grayscale(0);
-}
-
-.preview-card.active {
-    width: 140px; /* La activa es un poco más grande */
-    border-color: var(--blue-accent);
-    filter: grayscale(0);
-    box-shadow: 0 10px 30px rgba(30, 123, 246, 0.3);
-}
-
-.preview-card img { width: 100%; height: 100%; object-fit: cover; }
-
-
-
-@keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
