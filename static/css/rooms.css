@@ -40,7 +40,7 @@ body {
 .main-navbar {
     position: fixed;
     top: 1.5rem;
-    right: 1.5rem;
+    left: 3.5rem;
     z-index: 100;
 }
 
@@ -70,7 +70,7 @@ body {
 .nav-links {
     position: absolute;
     top: 60px;
-    right: 0;
+    left: 0;   /* <--- CAMBIADO: Antes decía right: 0 */
     background: rgba(17, 24, 36, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -85,7 +85,6 @@ body {
     pointer-events: none;
     transition: all 0.3s ease;
 }
-
 .nav-links.mobile-open {
     opacity: 1;
     transform: translateY(0);
@@ -100,6 +99,7 @@ body {
 .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
 /* Panel de Detalles Cinematográfico */
+/* 1. El panel normal (como lo tienes ahora) */
 .room-details-panel {
     position: fixed;
     left: 0; top: 0; bottom: 0;
@@ -107,13 +107,20 @@ body {
     max-width: 650px;
     opacity: 0;
     transform: translateX(-100%);
-    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.8s ease; /* Bajamos el tiempo para que sea más reactivo */
     z-index: 5;
     background: linear-gradient(to right, rgba(5, 12, 22, 0.95) 0%, rgba(5, 12, 22, 0.7) 60%, rgba(5, 12, 22, 0) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 4rem 0 5%;
+}
+
+/* 2. REGLA NUEVA: Ocultar el panel cuando el carrusel se despliega (user-exploring) */
+/* Esta es la que hace que el texto se quite cuando sacas el carrusel */
+.carousel-drawer.user-exploring ~ .room-details-panel {
+    opacity: 0 !important;
+    transform: translateX(-100%) !important;
 }
 
 .interactive-showcase.room-active .room-details-panel {
