@@ -25,6 +25,7 @@ const roomsData = [
 function updateSuite(element, index) {
     const showcase = document.getElementById('showcase');
     const bg = document.getElementById('bg-premium');
+    const drawer = document.getElementById('carousel-drawer');
 
     bg.style.backgroundImage = `url(${roomsData[index].bg})`;
     
@@ -33,6 +34,9 @@ function updateSuite(element, index) {
 
     showcase.classList.add('room-active');
     
+    // OPCIÓN 2 IMPLEMENTADA: Al seleccionar otra carta, el carrusel se esconde automáticamente
+    drawer.classList.remove('user-exploring');
+
     document.getElementById('room-title').innerText = roomsData[index].title;
     document.getElementById('room-desc').innerText = roomsData[index].desc;
     document.getElementById('room-price').innerText = roomsData[index].price;
@@ -48,6 +52,7 @@ function updateSuite(element, index) {
 }
 
 window.onload = () => {
+    // Menú Hamburguesa
     const toggle = document.getElementById('menu-toggle');
     const links = document.getElementById('nav-links');
     toggle.onclick = () => {
@@ -56,9 +61,21 @@ window.onload = () => {
     };
 
     const drawer = document.getElementById('carousel-drawer');
-    drawer.onmouseenter = () => {
-        if(document.getElementById('showcase').classList.contains('room-active'))
-            drawer.classList.add('user-exploring');
+    const toggleBtn = document.getElementById('toggle-carousel-btn');
+
+    // ACCIÓN DEL BOTÓN (FLECHITA): Abre y cierra el carrusel al dar clic
+    toggleBtn.onclick = (e) => {
+        e.stopPropagation(); // Evita que el click se propague al documento
+        drawer.classList.toggle('user-exploring');
     };
-    drawer.onmouseleave = () => drawer.classList.remove('user-exploring');
+
+    // ACCIÓN DE CLIC FUERA: Si el carrusel está desplegado y das clic en el fondo, se cierra
+    document.addEventListener('click', (event) => {
+        if (drawer.classList.contains('user-exploring')) {
+            // Si el clic NO fue dentro del carrusel, lo cerramos
+            if (!drawer.contains(event.target)) {
+                drawer.classList.remove('user-exploring');
+            }
+        }
+    });
 };
