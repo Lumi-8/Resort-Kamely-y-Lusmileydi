@@ -1,0 +1,270 @@
+:root {
+    --navy-bg: #050c16;
+    --blue-accent: #1e7bf6;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+    background-color: var(--navy-bg);
+    color: var(--white);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Fondo Inmersivo */
+.main-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: brightness(0.8);
+    transition: background-image 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar Ultra Minimalista */
+.main-navbar {
+    position: fixed;
+    top: 1.5rem;
+    left: 3.5rem;
+    z-index: 100;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: rgba(17, 24, 36, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    box-sizing: content-box;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;   /* <--- CAMBIADO: Antes decía right: 0 */
+    background: rgba(17, 24, 36, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.nav-links.mobile-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover { color: var(--blue-accent); }
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* Panel de Detalles Cinematográfico */
+/* 1. El panel normal (como lo tienes ahora) */
+.room-details-panel {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 50%;
+    max-width: 650px;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.8s ease; /* Bajamos el tiempo para que sea más reactivo */
+    z-index: 5;
+    background: linear-gradient(to right, rgba(5, 12, 22, 0.95) 0%, rgba(5, 12, 22, 0.7) 60%, rgba(5, 12, 22, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem 0 5%;
+}
+
+/* 2. REGLA NUEVA: Ocultar el panel cuando el carrusel se despliega (user-exploring) */
+/* Esta es la que hace que el texto se quite cuando sacas el carrusel */
+.carousel-drawer.user-exploring ~ .room-details-panel {
+    opacity: 0 !important;
+    transform: translateX(-100%) !important;
+}
+
+.interactive-showcase.room-active .room-details-panel {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sub-tag { color: var(--blue-accent); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
+.room-details-panel h2 { font-size: 3.5rem; font-family: serif; margin: 0.5rem 0; }
+.room-details-panel p { color: rgba(255, 255, 255, 0.8); line-height: 1.6; }
+.room-price-tag { font-size: 1.4rem; font-weight: 600; color: var(--blue-accent); margin: 1rem 0; display: block;}
+
+.btn-reserve-room {
+    background: var(--blue-accent);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 15px rgba(30, 123, 246, 0.3);
+}
+
+/* Amenities */
+.amenities-container { display: flex; gap: 0.8rem; margin-top: 1rem; }
+.amenity-badge {
+    background: var(--glass);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Carrusel Drawer */
+.interactive-showcase {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+    position: relative;
+    width: 100%;
+}
+
+.carousel-drawer {
+    position: fixed;
+    right: 0;
+    bottom: 50%;
+    transform: translateY(50%); /* Centrado vertical en pantalla */
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.interactive-showcase:not(.room-active) .carousel-drawer {
+    right: 50%;
+    transform: translate(50%, 0);
+    bottom: 10%;
+}
+
+.interactive-showcase:not(.room-active) #toggle-carousel-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.interactive-showcase.room-active .carousel-drawer {
+    right: 0;
+    transform: translateX(calc(100% - 60px)); /* Deja solo 60px visibles (la flecha) */
+    bottom: 10%;
+}
+
+.carousel-drawer.user-exploring {
+    transform: translateX(0) !important; /* Se despliega por completo desde la derecha */
+}
+.preview-carousel {
+    display: flex;
+    gap: 1.5rem;
+    background: rgba(5, 12, 22, 0.6);
+    backdrop-filter: blur(15px);
+    padding: 2rem;
+    border-radius: 30px 0 0 30px; /* Redondeado solo del lado izquierdo */
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+.toggle-carousel-btn {
+    background: rgba(17, 24, 36, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px; /* Separación del carrusel */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.toggle-carousel-btn:hover {
+    background: var(--blue-accent);
+    transform: scale(1.1);
+}
+
+/* Animación de rotación para la flecha */
+.arrow-icon {
+    display: inline-block;
+    transition: transform 0.5s ease;
+    font-size: 0.9rem;
+}
+
+/* Cuando el carrusel se despliega, la flecha apunta hacia el otro lado */
+.carousel-drawer.user-exploring .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.room-card {
+    width: 300px;
+    height: 450px;
+    border-radius: 28px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.room-card.active-in-bg {
+    width: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    border: none;
+}
+.room-card img { width: 100%; height: 100%; object-fit: cover; }
+.card-info {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(transparent, rgba(5, 12, 22, 0.95));
+}
