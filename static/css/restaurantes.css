@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Estructura del Collage (Cajas Vacías Editables)
+   ========================================================================== */
+.restaurant-gallery {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Columna grande y columna pequeña */
+    gap: 15px;
+    height: 450px; /* Altura fija para que mantenga la forma de tu diseño */
+}
+
+/* Estilo base para todas las cajas vacías */
+.grid-main-box, .side-box {
+    background-color: #222; /* Un gris oscuro para que resalte del fondo negro */
+    border: 2px dashed rgba(255, 255, 255, 0.2); /* Borde discontinuo elegante */
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666; /* Texto gris de guía */
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover por si quieres ver cómo reaccionan al pasar el mouse */
+.grid-main-box:hover, .side-box:hover {
+    border-color: #2e8eff; /* El borde se vuelve azul brillante */
+    color: #2e8eff;
+    background-color: #1a1a1a;
+}
+
+/* Sub-grid para las 3 cajas de la derecha */
+.grid-side-boxes {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr); /* 3 filas exactamente iguales */
+    gap: 15px;
+}
