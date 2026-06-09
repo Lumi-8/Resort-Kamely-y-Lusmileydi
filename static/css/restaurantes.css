@@ -271,38 +271,63 @@ body {
   fill: #0f172a;
 }
 /* ================= NAVBAR & HAMBURGUER MENU ================= */
+/* ================= NAVBAR DE COLAPSO HORIZONTAL REFINADA ================= */
+/* ==========================================================================
+   ================= NAVBAR & VENTANITA FLOTANTE PREMIUM =====================
+   ========================================================================== */
+
+/* ==========================================================================
+   ================= NAVBAR PRINCIPAL (Mantiene tu estética) ================
+   ========================================================================== */
+
 .navbar-premium {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  top: 15px;
+  left: 20px;
+  width: calc(100% - 40px); 
+  height: 60px;
+  background: #0f172a; 
+  z-index: 99992; /* Por debajo de la ventanita */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-radius 0.5s ease;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px 20px;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  position: relative;
+}
+
+.nav-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 .logo-nav {
   color: white;
   font-weight: 700;
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 25px;
+  white-space: nowrap;
 }
 
 .nav-links a {
@@ -315,65 +340,181 @@ body {
 
 .nav-links a:hover, .nav-links .active-link {
   color: #ffffff;
-  border-bottom: 2px solid var(--blue-light);
-  padding-bottom: 4px;
 }
 
-.menu-toggle {
-  display: none;
+/* --- Botón Hamburguesa Estético --- */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 99995; 
+  position: absolute;
+  right: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.6);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Responsivo / Hamburguesa */
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* === ESTADO SCROLLED (Tu efecto visual conservado) === */
+.navbar-premium.scrolled {
+  width: 60px; 
+  border-radius: 50%;
+}
+
+.navbar-premium.scrolled .nav-content-wrapper {
+  transform: translateX(-150%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar-premium.scrolled .hamburger {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  right: auto; /* 🌟 ESTA LÍNEA ES CLAVE: Rompe el empuje hacia la derecha */
+  transform: translate(-50%, -50%); /* Lo centra matemáticamente al milímetro */
+}
+
+/* Animación del Icono a X al estar activo */
+.navbar-premium.hamburger-active .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.navbar-premium.hamburger-active .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.navbar-premium.hamburger-active .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* ==========================================================================
+   ================= 🌟 COMPONENTE: MINI NAVBAR DESPLEGABLE ================
+   ========================================================================== */
+.mini-nav-desplegable {
+  position: fixed;
+  top: 85px;          /* Sigue cayendo justo debajo de la altura de la navbar */
+  left: 20px;         /* 🌟 CAMBIADO: Ahora se alinea perfectamente con el lado izquierdo */
+  right: auto;        /* 🌟 CLAVE: Rompe cualquier herencia del lado derecho */
+  width: 200px;       
+  background: #0f172a; 
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  z-index: 99994;    
+  
+  /* Tu animación hermosa */
+  opacity: 0;
+  transform: translateY(-15px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estado activo disparado por JS */
+.mini-nav-desplegable.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.mini-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mini-nav-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+  width: 100%;
+  transition: color 0.2s ease;
+}
+
+.mini-nav-links a:hover, .mini-nav-links .active-mini-link {
+  color: #ffffff;
+}
+
+/* ================= RESPONSIVO UNIFICADO (MÓVILES) ================= */
 @media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 100%;
+  .navbar-premium, .navbar-premium.scrolled {
+    top: 0;
     left: 0;
     width: 100%;
+    border-radius: 0;
+    border: none;
+    overflow: visible;
+  }
+
+  .navbar-premium .nav-content-wrapper,
+  .navbar-premium.scrolled .nav-content-wrapper {
+    transform: translateX(0);
+    opacity: 1;
+    width: auto;
+  }
+
+  .hamburger, .navbar-premium.scrolled .hamburger {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+    position: relative;
+    right: 0;
+    transition: none;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     background: #0f172a;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
-    gap: 20px;
-    transform: translateY(-150%);
+    justify-content: center;
+    gap: 30px;
+    transform: translateY(-100%);
     transition: transform 0.4s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
 
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
+  /* Disparador móvil unificado */
+  .nav-container #menu-toggle:checked ~ .nav-links,
+  .navbar-premium.scrolled .nav-container #menu-toggle:checked ~ .nav-links {
+    transform: translateY(0) !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100vh !important;
+    display: flex !important;
   }
 
-  .hamburger span {
-    width: 25px;
-    height: 3px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  /* Animación e interactividad del menú sin JS */
-  .menu-toggle:checked ~ .nav-links {
-    transform: translateY(0);
-  }
-
-  .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+  .nav-container #menu-toggle:checked ~ .hamburger span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 6px);
   }
-
-  .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+  .nav-container #menu-toggle:checked ~ .hamburger span:nth-child(2) {
     opacity: 0;
   }
-
-  .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+  .nav-container #menu-toggle:checked ~ .hamburger span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -6px);
   }
 }
 
-/* Pequeño ajuste al hero para que no se esconda detrás de la barra fija */
+/* Ajuste final para que el contenido respire */
 .hero {
-  padding-top: 80px;
+  padding-top: 100px;
 }

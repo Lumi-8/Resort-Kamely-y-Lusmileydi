@@ -95,3 +95,51 @@ document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
     swiper.slideTo(index);
   });
 });
+
+// ====== DETECTOR DE SCROLL PARA COLAPSO HORIZONTAL TÉLESCOPICO ======
+// ==========================================================================
+// ================= CONTROL DE NAVBAR Y MENÚ FLOTANTE ======================
+// ==========================================================================
+// ==========================================================================
+// ============ CONTROL SEPARADO DE NAVBAR ESTÉTICA Y MINI NAVBAR ===========
+// ==========================================================================
+const navbarPrincipal = document.querySelector('.navbar-premium');
+const botonHamburguesa = document.querySelector('.hamburger');
+const miniNavDesplegable = document.querySelector('.mini-nav-desplegable');
+
+// 1. Efecto estético: Encoger la barra al hacer scroll
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    if (navbarPrincipal) navbarPrincipal.classList.add('scrolled');
+  } else {
+    if (navbarPrincipal) {
+      navbarPrincipal.classList.remove('scrolled');
+      // Por seguridad, si sube arriba limpiamos los estados de apertura
+      navbarPrincipal.classList.remove('hamburger-active');
+      if (miniNavDesplegable) miniNavDesplegable.classList.remove('active');
+    }
+  }
+});
+
+// 2. Interacción real: Desplegar la mini navbar independiente al hacer clic
+if (botonHamburguesa) {
+  botonHamburguesa.addEventListener('click', (e) => {
+    e.stopPropagation(); // Evita que el clic se propague por el documento
+    
+    // Alternamos la clase en la mini navbar para que aparezca/desaparezca
+    if (miniNavDesplegable) miniNavDesplegable.classList.toggle('active');
+    
+    // Alternamos una clase en la navbar principal SOLO para animar las líneas a X
+    if (navbarPrincipal) navbarPrincipal.classList.toggle('hamburger-active');
+  });
+}
+
+// Cierre inteligente: Si el menú está abierto y clicamos fuera de él, se cierra
+document.addEventListener('click', (e) => {
+  if (miniNavDesplegable && miniNavDesplegable.classList.contains('active')) {
+    if (!miniNavDesplegable.contains(e.target) && !botonHamburguesa.contains(e.target)) {
+      miniNavDesplegable.classList.remove('active');
+      if (navbarPrincipal) navbarPrincipal.classList.remove('hamburger-active');
+    }
+  }
+});

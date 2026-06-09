@@ -10,22 +10,36 @@
 <body>
 <nav class="navbar-premium">
   <div class="nav-container">
-    <a href="index.html" class="logo-nav">K'logicks Luxury</a>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    <label for="menu-toggle" class="hamburger">
+    
+    <div class="nav-content-wrapper">
+      <a href="index.html" class="logo-nav">K'logicks Luxury</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="habitaciones.html">Habitaciones</a></li>
+        <li><a href="restaurantes.html" class="active-link">Gastronomía</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="hamburger">
       <span></span>
       <span></span>
       <span></span>
-    </label>
-    <ul class="nav-links">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="rooms.html">Habitaciones</a></li>
-      <li><a href="restaurantes.html" class="active-link">Gastronomía</a></li>
-      <li><a href="servicios.html">Servicios</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
+    </div>
+    
   </div>
 </nav>
+
+<div class="mini-nav-desplegable">
+  <ul class="mini-nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="habitaciones.html">Habitaciones</a></li>
+    <li><a href="restaurantes.html" class="active-mini-link">Gastronomía</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+</div>
   <header class="hero">
     <div class="hero-content">
       <h1>Experiencia Gastronómica</h1>
@@ -42,7 +56,7 @@
         <div class="swiper-slide" data-restaurante="dominicano">
           <div class="plato-flotante">
             <div class="img-container">
-              <img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=400&auto=format&fit=crop&q=60" alt="Comida Dominicana">
+              <img src="static/images/la champola.jpeg" alt="Logo restaurante dominicano">
             </div>
             <h3>Dominicano</h3>
           </div>
@@ -51,7 +65,7 @@
         <div class="swiper-slide" data-restaurante="colombiano">
           <div class="plato-flotante">
             <div class="img-container">
-              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop&q=60" alt="Comida Colombiana">
+              <img src="static/images/lulo.jpeg" alt="logo restaurante colombiano">
             </div>
             <h3>Colombiano</h3>
           </div>
@@ -60,7 +74,7 @@
         <div class="swiper-slide" data-restaurante="japones">
           <div class="plato-flotante">
             <div class="img-container">
-              <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&auto=format&fit=crop&q=60" alt="Comida Japonesa">
+              <img src="static/images/kaizen.jpeg" alt="logo restaurante japones">
             </div>
             <h3>Japonés</h3>
           </div>
@@ -69,6 +83,8 @@
       </div> <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+    </div>
+     </div>
   </section>
 
   <div class="subfiltros-container">
