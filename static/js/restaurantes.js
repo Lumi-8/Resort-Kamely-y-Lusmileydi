@@ -88,3 +88,10 @@ botonesSubfiltro.forEach(boton => {
 document.addEventListener('DOMContentLoaded', () => {
   actualizarEstructuraMenu('dominicano'); // Carga el menú dominicano de forma nativa al inicio
 });
+
+// Permitir navegación al hacer clic directamente sobre las tarjetas del carrusel
+document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
+  slide.addEventListener('click', () => {
+    swiper.slideTo(index);
+  });
+});

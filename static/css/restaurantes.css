@@ -23,14 +23,28 @@ body {
 
 /* ================= HERO SECTION ================= */
 .hero {
-  height: 45vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  height: 50vh;
+  /* Imagen elegante de un restaurante/plato gourmet */
+  background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85)), 
+              url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
   padding: 20px;
+  position: relative;
+}
+
+/* Un sutil separador dorado inferior para elevar el estatus premium */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
 .hero-content h1 {
@@ -255,4 +269,111 @@ body {
 
 .footer-wave .shape-fill {
   fill: #0f172a;
+}
+/* ================= NAVBAR & HAMBURGUER MENU ================= */
+.navbar-premium {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+}
+
+.logo-nav {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links .active-link {
+  color: #ffffff;
+  border-bottom: 2px solid var(--blue-light);
+  padding-bottom: 4px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* Responsivo / Hamburguesa */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0f172a;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+    transform: translateY(-150%);
+    transition: transform 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Animación e interactividad del menú sin JS */
+  .menu-toggle:checked ~ .nav-links {
+    transform: translateY(0);
+  }
+
+  .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
+
+/* Pequeño ajuste al hero para que no se esconda detrás de la barra fija */
+.hero {
+  padding-top: 80px;
 }

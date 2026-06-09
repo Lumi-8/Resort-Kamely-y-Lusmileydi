@@ -8,7 +8,24 @@
   <link rel="stylesheet" href="static/css/restaurantes.css">
 </head>
 <body>
-
+<nav class="navbar-premium">
+  <div class="nav-container">
+    <a href="index.html" class="logo-nav">K'logicks Luxury</a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="rooms.html">Habitaciones</a></li>
+      <li><a href="restaurantes.html" class="active-link">Gastronomía</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
   <header class="hero">
     <div class="hero-content">
       <h1>Experiencia Gastronómica</h1>
@@ -63,156 +80,356 @@
 
   <main class="catalogo-section">
     
-    <div class="grupo-restaurante active" id="menu-dominicano">
-      <div class="grid-productos">
-        <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=400" alt="Mofongo"></div>
-          <h4>Mofongo con Chicharrón</h4>
-          <p class="precio">$12.00</p>
-        </div>
-        <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400" alt="Sancocho"></div>
-          <h4>Sancocho Tradicional</h4>
-          <p class="precio">$14.50</p>
-        </div>
-        <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400" alt="Pescado con Coco"></div>
-          <h4>Pescado con Coco Samaná</h4>
-          <p class="precio">$16.00</p>
-        </div>
-        <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=400" alt="Morir Soñando"></div>
-          <h4>Morir Soñando</h4>
-          <p class="precio">$3.50</p>
-        </div>
-        <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400" alt="Jugo de Chinola"></div>
-          <h4>Jugo Natural de Chinola</h4>
-          <p class="precio">$3.00</p>
-        </div>
-        <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400" alt="Frisado de Limón"></div>
-          <h4>Limón Frisado</h4>
-          <p class="precio">$2.75</p>
-        </div>
-        <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400" alt="Majarete"></div>
-          <h4>Majarete con Canela</h4>
-          <p class="precio">$4.00</p>
-        </div>
-        <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400" alt="Tres Leches"></div>
-          <h4>Tres Leches Premium</h4>
-          <p class="precio">$5.00</p>
-        </div>
-        <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=400" alt="Dulce de Leche"></div>
-          <h4>Dulce de Leche Cortada</h4>
-          <p class="precio">$3.50</p>
-        </div>
-      </div>
+   <div class="grupo-restaurante active" id="menu-dominicano">
+  <div class="grid-productos">
+    
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=500" alt="Mofongo"></div>
+      <h4>Mofongo de Chicharrón</h4>
     </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500" alt="Sancocho"></div>
+      <h4>Sancocho de Siete Carnes</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500" alt="Pescado con Coco"></div>
+      <h4>Pescado con Coco Estilo Samaná</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500" alt="Chivo Liniero"></div>
+      <h4>Chivo Liniero al Horno</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500" alt="La Bandera"></div>
+      <h4>Arroz, Habichuelas y Carne (La Bandera)</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?w=500" alt="Asopao"></div>
+      <h4>Asopao de Camarones con Tocino</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1626700051175-6518c4793f4f?w=500" alt="Locrio"></div>
+      <h4>Locrio de Cerdo Ahumado</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500" alt="Pastelón"></div>
+      <h4>Pastelón de Plátano Maduro</h4>
+    </div>
+    <div class="card-producto" data-tipo="comida">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500" alt="Pollo Frito"></div>
+      <h4>Pica Pollo Tradicional Crujiente</h4>
+    </div>
+
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=500" alt="Morir Soñando"></div>
+      <h4>Morir Soñando Clásico</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Chinola"></div>
+      <h4>Jugo Natural de Chinola</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500" alt="Limón"></div>
+      <h4>Limón Frisado Caribeño</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=500" alt="Mamajuana"></div>
+      <h4>Trago de Mamajuana Artesanal</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Coco Loco"></div>
+      <h4>Cóctel Coco Loco Playero</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500" alt="Cuba Libre"></div>
+      <h4>Cuba Libre con Ron Añejo</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=500" alt="Té de Jengibre"></div>
+      <h4>Té de Jengibre con Limón Dulce</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500" alt="Batida Papaya"></div>
+      <h4>Batida de Lechosa con Leche Evaporada</h4>
+    </div>
+    <div class="card-producto" data-tipo="bebidas">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500" alt="Jugo Tamarindo"></div>
+      <h4>Jugo Natural de Tamarindo</h4>
+    </div>
+
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500" alt="Majarete"></div>
+      <h4>Majarete Dulce con Canela</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" alt="Tres Leches"></div>
+      <h4>Tres Leches Tradicional</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=500" alt="Dulce de Leche"></div>
+      <h4>Dulce de Leche Cortada</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=500" alt="Habichuelas con dulce"></div>
+      <h4>Habichuelas con Dulce y Galletitas</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1547414368-ac8cbd23c4a3?w=500" alt="Flan"></div>
+      <h4>Flan de Coco Estilo Casero</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1559622214-f8a98409c927?w=500" alt="Coconete"></div>
+      <h4>Conconetes de Coco Rallado</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1508737027454-e6454ef45afd?w=500" alt="Chaca"></div>
+      <h4>Chacá (Maíz Craqueado Dulce)</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1558961309-dbdf33740268?w=500" alt="Jaleo de Guayaba"></div>
+      <h4>Pasta de Guayaba con Queso Blanco</h4>
+    </div>
+    <div class="card-producto" data-tipo="postres">
+      <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500" alt="Bizcocho Dominicano"></div>
+      <h4>Bizcocho Dominicano con Suspiro</h4>
+    </div>
+
+  </div>
+</div>
 
     <div class="grupo-restaurante" id="menu-colombiano">
       <div class="grid-productos">
+        
         <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400" alt="Bandeja Paisa"></div>
-          <h4>Bandeja Paisa Completa</h4>
-          <p class="precio">$15.00</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500" alt="Bandeja Paisa"></div>
+          <h4>Bandeja Paisa Tradicional</h4>
         </div>
         <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1548940740-204726a1d82f?w=400" alt="Ajiaco"></div>
-          <h4>Ajiaco Santaferereño</h4>
-          <p class="precio">$13.00</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1548940740-204726a1d82f?w=500" alt="Ajiaco"></div>
+          <h4>Ajiaco Santaferereño con Alcaparras</h4>
         </div>
         <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=400" alt="Arepas"></div>
-          <h4>Arepa de Choclo con Queso</h4>
-          <p class="precio">$6.50</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=500" alt="Arepa de Choclo"></div>
+          <h4>Arepa de Choclo con Queso Campesino</h4>
         </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500" alt="Sancocho Colombiano"></div>
+          <h4>Sancocho Trifásico Criollo</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500" alt="Lechona"></div>
+          <h4>Lechona Tolimense Especial</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=500" alt="Mote de Queso"></div>
+          <h4>Mote de Queso Costeño</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500" alt="Carne a la Llanera"></div>
+          <h4>Carne a la Llanera con Yuca</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1625938146369-adc83368bda7?w=500" alt="Tamal Tolimense"></div>
+          <h4>Tamal Tolimense envuelto en Hoja</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1626700051175-6518c4793f4f?w=500" alt="Arroz con Pollo"></div>
+          <h4>Arroz con Pollo Desmechado</h4>
+        </div>
+
         <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=400" alt="Lulo"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=500" alt="Jugo de Lulo"></div>
           <h4>Jugo de Lulo Natural</h4>
-          <p class="precio">$3.50</p>
         </div>
         <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=400" alt="Café de Colombia"></div>
-          <h4>Café Tinto Filtrado</h4>
-          <p class="precio">$2.50</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=500" alt="Café de Colombia"></div>
+          <h4>Café Tinto Filtrado Exclusivo</h4>
         </div>
         <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=400" alt="Agua Panela"></div>
-          <h4>Aguapanela con Limón</h4>
-          <p class="precio">$2.75</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=500" alt="Aguapanela"></div>
+          <h4>Aguapanela con Limón Mesino</h4>
         </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=500" alt="Champús"></div>
+          <h4>Champús Valluno Tradicional</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500" alt="Limonada de Coco"></div>
+          <h4>Limonada de Coco Caribeña</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Jugo Maracuyá"></div>
+          <h4>Jugo Natural de Maracuyá</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Refajo"></div>
+          <h4>Refajo Tradicional con Kola</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500" alt="Sorbete Borojó"></div>
+          <h4>Sorbete de Borojó Energizante</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500" alt="Chocolate con Queso"></div>
+          <h4>Chocolate Caliente Completo</h4>
+        </div>
+
         <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400" alt="Natas"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500" alt="Postre de Natas"></div>
           <h4>Postre de Natas Casero</h4>
-          <p class="precio">$4.50</p>
         </div>
         <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1514517604298-cf80e0fb7f1e?w=400" alt="Arequipe"></div>
-          <h4>Oblea con Arequipe</h4>
-          <p class="precio">$3.50</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1514517604298-cf80e0fb7f1e?w=500" alt="Oblea"></div>
+          <h4>Oblea de Arequipe y Queso</h4>
         </div>
         <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400" alt="Brevas"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500" alt="Brevas con Queso"></div>
           <h4>Brevas con Queso Cuajada</h4>
-          <p class="precio">$4.00</p>
         </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1547414368-ac8cbd23c4a3?w=500" alt="Leche Asada"></div>
+          <h4>Leche Asada Tradicional</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" alt="Arroz con Leche"></div>
+          <h4>Arroz con Leche de la Abuela</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=500" alt="Merengón"></div>
+          <h4>Merengón de Fresas y Guanábana</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1559622214-f8a98409c927?w=500" alt="Enyucado"></div>
+          <h4>Enyucado Costeño con Coco</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1508737027454-e6454ef45afd?w=500" alt="Cuajada con Melao"></div>
+          <h4>Cuajada Campesina con Melao</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1558961309-dbdf33740268?w=500" alt="Solteritas"></div>
+          <h4>Solteritas Crujientes con Crema</h4>
+        </div>
+
       </div>
     </div>
 
     <div class="grupo-restaurante" id="menu-japones">
       <div class="grid-productos">
+        
         <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400" alt="Ramen"></div>
-          <h4>Tonkotsu Ramen</h4>
-          <p class="precio">$14.00</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500" alt="Tonkotsu Ramen"></div>
+          <h4>Tonkotsu Ramen Tradicional</h4>
         </div>
         <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=400" alt="Sushi"></div>
-          <h4>Maki Sushi Combo Platter</h4>
-          <p class="precio">$16.50</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=500" alt="Maki Sushi"></div>
+          <h4>Maki Sushi Premium Platter</h4>
         </div>
         <div class="card-producto" data-tipo="comida">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?w=400" alt="Katsu"></div>
-          <h4>Chicken Katsu Curry</h4>
-          <p class="precio">$13.50</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500" alt="Chicken Katsu"></div>
+          <h4>Chicken Katsu Curry Imperial</h4>
         </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500" alt="Gyoza"></div>
+          <h4>Gyozas de Cerdo al Vapor</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1615361200141-f45000326721?w=500" alt="Sashimi"></div>
+          <h4>Sashimi de Salmón y Atún Fresco</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1626700051175-6518c4793f4f?w=500" alt="Katsudon"></div>
+          <h4>Katsudon de Cerdo sobre Arroz</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500" alt="Yakitori"></div>
+          <h4>Yakitori de Pollo al Carbón</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500" alt="Tempura"></div>
+          <h4>Tempura de Mariscos y Vegetales</h4>
+        </div>
+        <div class="card-producto" data-tipo="comida">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500" alt="Unadon"></div>
+          <h4>Unadon (Anguila Asada Glaseada)</h4>
+        </div>
+
         <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" alt="Matcha"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500" alt="Té Matcha"></div>
           <h4>Té Matcha Tradicional Frío</h4>
-          <p class="precio">$4.00</p>
         </div>
         <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1625244695851-1fa8d24d9b26?w=400" alt="Sake"></div>
-          <h4>Sake Premium Junmai (Copa)</h4>
-          <p class="precio">$7.00</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1625244695851-1fa8d24d9b26?w=500" alt="Sake"></div>
+          <h4>Sake Premium Junmai</h4>
         </div>
         <div class="card-producto" data-tipo="bebidas">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400" alt="Sencha"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=500" alt="Té Sencha"></div>
           <h4>Té Verde Sencha Caliente</h4>
-          <p class="precio">$3.00</p>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500" alt="Ramune"></div>
+          <h4>Bebida Ramune de Fresa</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Calpis"></div>
+          <h4>Calpis Soft Drink Refrescante</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=500" alt="Umeshu"></div>
+          <h4>Licor de Ciruela Umeshu en las Rocas</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=500" alt="Matcha Latte"></div>
+          <h4>Matcha Latte Helado Cremoso</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=500" alt="Té Genmaicha"></div>
+          <h4>Té Genmaicha con Arroz Tostado</h4>
+        </div>
+        <div class="card-producto" data-tipo="bebidas">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=500" alt="Whisky Japones"></div>
+          <h4>Highball de Whisky Japonés Premium</h4>
+        </div>
+
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500" alt="Mochi"></div>
+          <h4>Mochi Artesanal de Fresa Silvestre</h4>
         </div>
         <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400" alt="Mochi"></div>
-          <h4>Mochi de Fresa Silvestre</h4>
-          <p class="precio">$5.00</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536680465759-a301be1c6a2d?w=500" alt="Dorayaki"></div>
+          <h4>Dorayaki Relleno de Dulce Azuki</h4>
         </div>
         <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1536680465759-a301be1c6a2d?w=400" alt="Dorayaki"></div>
-          <h4>Dorayaki de Azuki</h4>
-          <p class="precio">$4.50</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500" alt="Helado Matcha"></div>
+          <h4>Helado Artesanal de Matcha Orgánico</h4>
         </div>
         <div class="card-producto" data-tipo="postres">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400" alt="Helado Matcha"></div>
-          <h4>Helado de Matcha Organico</h4>
-          <p class="precio">$4.25</p>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500" alt="Taiyaki"></div>
+          <h4>Taiyaki en Forma de Pez con Nutella</h4>
         </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" alt="Cheesecake Japones"></div>
+          <h4>Cheesecake Japonés Esponjoso y Fluffy</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=500" alt="Anmitsu"></div>
+          <h4>Anmitsu de Gelatina y Frutas de Temporada</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500" alt="Dango"></div>
+          <h4>Mitarashi Dango con Glaseado Dulce</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1514517604298-cf80e0fb7f1e?w=500" alt="Pudding"></div>
+          <h4>Purin (Pudín de Caramelo Japonés)</h4>
+        </div>
+        <div class="card-producto" data-tipo="postres">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1559622214-f8a98409c927?w=500" alt="Kakigori"></div>
+          <h4>Kakigori de Hielo Raspado con Sirope</h4>
+        </div>
+
       </div>
     </div>
-
   </main>
 
   <footer class="footer-organico">
