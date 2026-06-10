@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K'logicks - Reservas</title>
+    <link rel="stylesheet" href="static/css/reservas.css">
+</head>
+<body>
+
+    <section class="hero">
+        <h1 class="hero-title">K'logicks Premium Stay</h1>
+        
+        <div class="booking-bar">
+            <div class="input-group">
+                <label for="checkin">Entrada</label>
+                <input type="date" id="checkin">
+            </div>
+            <div class="input-group">
+                <label for="checkout">Salida</label>
+                <input type="date" id="checkout">
+            </div>
+            <div class="input-group">
+                <label for="guests">Huéspedes</label>
+                <select id="guests">
+                    <option value="1">1 Adulto</option>
+                    <option value="2" selected>2 Adultos</option>
+                    <option value="3">3 Adultos</option>
+                    <option value="4">Familiar</option>
+                </select>
+            </div>
+            <button class="btn-search">Buscar</button>
+        </div>
+    </section>
+
+    <main class="rooms-section">
+        <h2 class="section-title">Habitaciones Disponibles</h2>
+        
+        <div class="rooms-grid">
+            <div class="room-card">
+                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80" alt="Suite Ejecutiva" class="room-image">
+                <div class="room-info">
+                    <h3 class="room-name">Executive Suite</h3>
+                    <ul class="room-features">
+                        <li>Cama King Size</li>
+                        <li>Vista a la ciudad / Vistas panorámicas</li>
+                        <li>Minibar premium incluido</li>
+                    </ul>
+                    <div class="room-price-box">
+                        <div class="room-price">$150 <span>/ noche</span></div>
+                        <button class="btn-select">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-card">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Master Suite" class="room-image">
+                <div class="room-info">
+                    <h3 class="room-name">Master Luxury</h3>
+                    <ul class="room-features">
+                        <li>2 Camas Queen Size</li>
+                        <li>Terraza privada con jacuzzi</li>
+                        <li>Acceso libre al área de Spa</li>
+                    </ul>
+                    <div class="room-price-box">
+                        <div class="room-price">$220 <span>/ noche</span></div>
+                        <button class="btn-select">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-card">
+                <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80" alt="Estándar Deluxe" class="room-image">
+                <div class="room-info">
+                    <h3 class="room-name">Deluxe Standard</h3>
+                    <ul class="room-features">
+                        <li>Cama Queen Size</li>
+                        <li>Espacio de trabajo integrado</li>
+                        <li>Cafetera espresso inteligente</li>
+                    </ul>
+                    <div class="room-price-box">
+                        <div class="room-price">$95 <span>/ noche</span></div>
+                        <button class="btn-select">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+/* --- ESTILOS GLOBALES & RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #0d0f12;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* --- SECCIÓN HERO (PRINCIPAL) --- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    /* Imagen de fondo oscura y elegante */
+    background: linear-gradient(rgba(13, 15, 18, 0.6), #0d0f12), 
+                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    max-width: 800px;
+    line-height: 1.2;
+}
+
+/* --- MOTOR DE RESERVAS (BARRA GLASSMORPHISM) --- */
+.booking-bar {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    min-width: 150px;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #a0aec0;
+    margin-bottom: 8px;
+}
+
+/* Estilizando inputs nativos */
+.input-group input, 
+.input-group select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Cambiar el color del icono del calendario nativo */
+input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.btn-search {
+    background-color: #ffffff;
+    color: #0d0f12;
+    border: none;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    height: 47px; /* Alineación perfecta con los inputs */
+}
+
+.btn-search:hover {
+    background-color: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+/* --- SECCIÓN DE HABITACIONES (GRID CENTRAL) --- */
+.rooms-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #fff;
+    margin: 15px auto 0;
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.room-card {
+    background-color: #16191f;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.room-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.room-info {
+    padding: 25px;
+}
+
+.room-name {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.room-features {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.room-features li {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.room-features li::before {
+    content: '•';
+    color: #fff;
+    margin-right: 8px;
+}
+
+.room-price-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 15px;
+}
+
+.room-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.room-price span {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    font-weight: 400;
+}
+
+.btn-select {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-select:hover {
+    background: #fff;
+    color: #0d0f12;
+    border-color: #fff;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .booking-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn-search {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
